@@ -1,0 +1,36 @@
+/* _sass/custom/thms.scss */
+
+/* --- Theorem and Proof Box Styles --- */
+
+.theorem-box, .proof-box {
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+  border-radius: 6px;
+  border-left: 5px solid #8ab4f8; // 一个柔和的蓝色
+  background-color: rgba(138, 180, 248, 0.08);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+  // 确保盒子内的段落间距正常
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.theorem-title, .proof-title {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.proof-title {
+  font-style: italic; // 证明的标题用斜体
+  font-weight: normal;
+}
+
+// 证明结束的 Q.E.D. 符号
+.proof-qed {
+  text-align: right;
+  font-style: normal;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  color: var(--main-text-color);
+}
