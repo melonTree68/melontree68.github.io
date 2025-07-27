@@ -12,7 +12,6 @@ MathJax = {
         tags: 'ams',
 
         macros: {
-            // General
             bra: ["\\left(#1\\right)", 1],
             sbra: ["\\left[#1\\right]", 1],
             cbra: ["\\left\\{#1\\right\\}", 1],
@@ -21,15 +20,21 @@ MathJax = {
             abs: ["\\left|#1\\right|", 1],
             rest: ["\\left.#1\\right|_{#2}", 2],
 
-            R: "\\mathbb{R}",
-            N: "\\mathbb{N}",
-            Z: "\\mathbb{Z}",
-            Q: "\\mathbb{Q}",
-            C: "\\mathbb{C}",
-            F: "\\mathbb{F}",
+            R: "\\mathbf{R}",
+            N: "\\mathbf{N}",
+            Z: "\\mathbf{Z}",
+            Q: "\\mathbf{Q}",
+            C: "\\mathbf{C}",
+            F: "\\mathbf{F}",
             e: "\\mathrm{e}",
 
-            // Analysis
+            RR: "\\mathbb{R}",
+            NN: "\\mathbb{N}",
+            ZZ: "\\mathbb{Z}",
+            QQ: "\\mathbb{Q}",
+            CC: "\\mathbb{C}",
+            FF: "\\mathbb{F}",
+
             epsilon: "\\varepsilon",
             phi: "\\varphi",
             dnei: "\\overset{\\circ}{U}",
@@ -37,7 +42,6 @@ MathJax = {
             dx: "\\mathrm{d}x",
             nti: "n\\to\\infty",
 
-            // Algebra
             L: "\\mathcal{L}",
             M: "\\mathcal{M}",
             P: "\\mathcal{P}",
@@ -49,6 +53,7 @@ MathJax = {
             im: "\\operatorname{im}",
             tr: "\\operatorname{tr}",
             rank: "\\operatorname{rank}",
+            sgn: "\\operatorname{sgn}",
         },
     }
 };
