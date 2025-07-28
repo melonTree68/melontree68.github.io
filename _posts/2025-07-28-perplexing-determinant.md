@@ -34,7 +34,7 @@ Here a permutation $\sigma$ is defined as a bijection from $\\{1,\dots,n\\}$ ont
 $$ -->
 
 We all remember those useful theorems about determinants.
-1. Determinant is multiplicative: $\det(AB)=\det(A)\det(B)$.
+1. Determinant is multiplicative: $\det(AB)=(\det A)(\det B)$.
 2. A matrix is invertible if and only if its determinant is nonzero.
 3. The eigenvalues of a matrix are precisely the roots of its characteristic polynomial $p(z)=\det(zI-A)$.
 
