@@ -1,7 +1,8 @@
 /* _sass/custom/thms.scss */
 
 .theorem-box, 
-.proof-box {
+.proof-box,
+.definition-box {
   padding: 1rem 1.2rem;
   margin: 1.5rem 0;
   border-left: 3px solid;
@@ -16,7 +17,8 @@
   border-color: #4145b9;
 }
 
-.proof-box {
+.proof-box,
+.definition-box {
   border-color: #888888b0;
 }
 
@@ -27,7 +29,8 @@
 //     background-color: #f9f9f9;
 // }
 
-// .proof-box {
+// .proof-box,
+// .definition-box, {
 //     margin: 1.5em 0;
 //     padding: 0.5em 1em;
 //     border: 1px dashed #aaa;
@@ -35,7 +38,8 @@
 // }
 
 .theorem-title,
-.proof-title {
+.proof-title,
+.definition-title {
   margin-bottom: 0.5rem;
   font-size: 1.05em;
 }
@@ -49,6 +53,7 @@
 }
 
 .theorem-box mjx-container,
-.proof-box mjx-container {
+.proof-box mjx-container,
+.definition-box mjx-container {
   margin: 1rem 0;
 }
