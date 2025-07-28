@@ -13,8 +13,8 @@
 }
 
 .theorem-box {
-  background-color: #f2f2ff;
-  border-color: #4145b9;
+  background-color: var(--theorem-thm-bg);
+  border-color: var(--theorem-thm-border);
 }
 
 .proof-box,

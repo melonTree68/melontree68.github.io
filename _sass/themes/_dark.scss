@@ -1,6 +1,10 @@
 @mixin styles {
   color-scheme: dark;
 
+  /* Custom color */
+  --theorem-thm-bg: #28283b;
+  --theorem-thm-border: #282c7b;
+
   /* Framework color */
   --main-bg: rgb(27, 27, 30);
   --mask-bg: rgb(68, 69, 70);
