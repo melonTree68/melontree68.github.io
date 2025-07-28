@@ -1,13 +1,19 @@
 ---
 layout: post
-title: "The Perplexing Determinant: the Power of Abstraction"
-created: 2025-07-27
-categories: [Mathematics]
-tags: [math, linear algebra, abstraction]
-description: "The awkward introduction and definition of determinants often puzzle beginners, including me. However, as the level of abstraction increases, its motivation becomes clearer and the underlying elegance emerges."
+title: 'The Perplexing Determinant: the Power of Abstraction'
+created: '2025-07-27'
+categories:
+- Mathematics
+tags:
+- math
+- linear algebra
+- abstraction
+description: The awkward introduction and definition of determinants often puzzle
+  beginners, including me. However, as the level of abstraction increases, its motivation
+  becomes clearer and the underlying elegance emerges.
 math: true
+date: 2025-07-28 23:48 +0800
 ---
-
 > I find that in my own elementary lectures, I have, for pedagogical reasons, pushed determinants more and more into the background. Too often I have had the experience that, while the students acquired facility with the formulas, which are so useful in abbreviating long expressions, they often failed to gain familiarity with their meaning, and skill in manipulation prevented the student from going into all the details of the subject and so gaining a mastery.
 > 
 > _--- Elementary Mathematics from an Advanced Standpoint: Geometry_, Felix Klein
