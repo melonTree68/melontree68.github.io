@@ -4,7 +4,6 @@
 .proof-box {
   padding: 1rem 1.2rem;
   margin: 1.5rem 0;
-  border-radius: 0;
   border-left: 3px solid;
 
   p:last-child {
@@ -13,30 +12,40 @@
 }
 
 .theorem-box {
-  background-color: rgba(59, 130, 246, 0.08); // 柔和的蓝色背景
-  border-color: #3b82f6; // 蓝色边框
+  background-color: #f2f2ff;
+  border-color: #4145b9;
 }
 
 .proof-box {
-  background-color: var(--main-background-color); // 与页面背景色一致或稍浅
-  border-color: #888; // 灰色边框
+  border-color: #888888b0;
 }
+
+// .theorem-box {
+//     margin: 1.5em 0;
+//     padding: 0.5em 1em;
+//     border: 1px solid #ccc;
+//     background-color: #f9f9f9;
+// }
+
+// .proof-box {
+//     margin: 1.5em 0;
+//     padding: 0.5em 1em;
+//     border: 1px dashed #aaa;
+//     background-color: #fafafa;
+// }
 
 .theorem-title,
 .proof-title {
-  margin-bottom: 0.75rem;
-  font-weight: 500;
+  margin-bottom: 0.5rem;
   font-size: 1.05em;
 }
 
 .proof-title {
   font-style: italic;
-  font-weight: 500;
 }
 
 .proof-qed {
   text-align: right;
-  font-style: normal;
 }
 
 .theorem-box mjx-container,
