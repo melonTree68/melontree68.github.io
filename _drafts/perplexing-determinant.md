@@ -344,12 +344,12 @@ In this article, we achieve two main goals.
 The first is to give a clean, basis-free definition of determinants, and a satisfying explanation for the explicit formula of determinants. Along with it, we prove several important theorems in more intuitive ways.
 
 The second goal is to select several properties such that the only mathematical object $\delta$ satisfying the properties is the determinant. We arrive at two sets of properties.
-1. Multilinear algebra-based, $\delta:(\F^n)^n\to\F$
+1. Multilinear algebra-based, $\delta:(\F^n)^n\to\F$.
    - $\delta(x_1,\dots,x_i+x_i',\dots,x_n)=\delta(x_1,\dots,x_i,\dots,x_n)+\delta(x_1,\dots,x_i',\dots,x_n)$;
    - $\delta(x_1,\dots,cx_i,\dots,x_n)=c\delta(x_1,\dots,x_i,\dots,x_n)$;
    - $\delta(x_1,\dots,x_n)=0$ whenever $x_i=x_j$ for some $i\neq j$.
    - $\delta(e_1,\dots,e_n)=1$.
-2. Axiomatic, $\delta:\F^{n,n}\to\F$
+2. Axiomatic, $\delta:\F^{n,n}\to\F$.
    - $\delta(AB)=\delta(A)\delta(B)$;
    - $\delta(\text{diag}(\lambda_1,\dots,\lambda_n))=\lambda_1\cdots\lambda_n$.
 
