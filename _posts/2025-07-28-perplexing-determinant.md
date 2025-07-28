@@ -328,7 +328,7 @@ Now we prove the general case. Apply Gauss-Jordan elimination to a matrix $A$. W
 
 Consider a permutation matrix $P$. $P^2=I$ implies that the minimal polynomial of $P$ is a divisor of $z^2-1$. That implies that the minimal polynomial of $P$ has no repeated roots. Hence $P$ is diagonalizable, proving the desired result.
 
-Consider a row-multiplying matrix or a row-addition matrix $E$, which is an invertible triangular matrix. By selecting proper $r_1,\dots,r_n$, $\text{diag}(r_1,\dots,r_n)E$ is a triangular matrix with pairwise distinct entries, and is hence diagonalizable. That proves the desired result.
+Consider a row-multiplying matrix or a row-addition matrix $E$, which is an invertible triangular matrix. By selecting proper $r_1,\dots,r_n$, $\text{diag}(r_1,\dots,r_n)E$ is a triangular matrix with pairwise distinct diagonal entries, and is hence diagonalizable. That proves the desired result.
 
 Now the proof is completed.
 {% endcapture %}
