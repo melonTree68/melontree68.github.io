@@ -1,36 +1,45 @@
 /* _sass/custom/thms.scss */
 
-/* --- Theorem and Proof Box Styles --- */
-
-.theorem-box, .proof-box {
+.theorem-box, 
+.proof-box {
   padding: 1rem 1.2rem;
   margin: 1.5rem 0;
-  border-radius: 6px;
-  border-left: 5px solid #8ab4f8; // 一个柔和的蓝色
-  background-color: rgba(138, 180, 248, 0.08);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+  border-left: 3px solid;
 
-  // 确保盒子内的段落间距正常
   p:last-child {
     margin-bottom: 0;
   }
 }
 
-.theorem-title, .proof-title {
-  margin-bottom: 0.5rem;
-  font-weight: bold;
+.theorem-box {
+  background-color: rgba(59, 130, 246, 0.08); // 柔和的蓝色背景
+  border-color: #3b82f6; // 蓝色边框
+}
+
+.proof-box {
+  background-color: var(--main-background-color); // 与页面背景色一致或稍浅
+  border-color: #888; // 灰色边框
+}
+
+.theorem-title,
+.proof-title {
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  font-size: 1.05em;
 }
 
 .proof-title {
-  font-style: italic; // 证明的标题用斜体
-  font-weight: normal;
+  font-style: italic;
+  font-weight: 500;
 }
 
-// 证明结束的 Q.E.D. 符号
 .proof-qed {
   text-align: right;
   font-style: normal;
-  font-weight: bold;
-  margin-top: 0.5rem;
-  color: var(--main-text-color);
+}
+
+.theorem-box mjx-container,
+.proof-box mjx-container {
+  margin: 1rem 0;
 }
