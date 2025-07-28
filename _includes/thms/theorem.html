@@ -1,0 +1,10 @@
+<!-- _includes/thms/theorem.html -->
+
+<div class="theorem-box">
+  <div class="theorem-title">
+    <strong>Theorem</strong>{% if include.title != "" %} ({{ include.title }}){% endif %}<strong>.</strong>
+  </div>
+  <div class="theorem-content">
+    {{ include.content | markdownify }}
+  </div>
+</div>

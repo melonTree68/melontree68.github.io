@@ -1,0 +1,54 @@
+/* _sass/custom/thms.scss */
+
+.theorem-box, 
+.proof-box {
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+  border-left: 3px solid;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.theorem-box {
+  background-color: #f2f2ff;
+  border-color: #4145b9;
+}
+
+.proof-box {
+  border-color: #888888b0;
+}
+
+// .theorem-box {
+//     margin: 1.5em 0;
+//     padding: 0.5em 1em;
+//     border: 1px solid #ccc;
+//     background-color: #f9f9f9;
+// }
+
+// .proof-box {
+//     margin: 1.5em 0;
+//     padding: 0.5em 1em;
+//     border: 1px dashed #aaa;
+//     background-color: #fafafa;
+// }
+
+.theorem-title,
+.proof-title {
+  margin-bottom: 0.5rem;
+  font-size: 1.05em;
+}
+
+.proof-title {
+  font-style: italic;
+}
+
+.proof-qed {
+  text-align: right;
+}
+
+.theorem-box mjx-container,
+.proof-box mjx-container {
+  margin: 1rem 0;
+}
