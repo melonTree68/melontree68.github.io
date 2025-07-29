@@ -334,9 +334,9 @@ Now the proof is completed.
 {% endcapture %}
 {% include thms/proof.html content=pf_content %}
 
-The theorem above gives an axiomatic definition of determinants. Besides that, let's return to the topic of determinant and volume. Let $\F=\R$ and think of a matrix as a transformation. The theorem above tells us that, if you believe that
-- transformation by a diagonal matrix changes the volume by the product of the matrix's diagonal entries;
-- the volume scaling effect of a composite transformation is the product of the individual volume scalign effects,
+The theorem above gives an axiomatic definition of determinants. Besides that, let's return to the topic of determinant and volume. Let $\F=\R$ and think of a matrix as a (linear) transformation. The theorem above tells us that, if you believe that
+- transformation by a diagonal matrix scales the volume by a factor of the product of the matrix's diagonal entries;
+- the volume scaling factor of a composite transformation is the product of the individual volume scaling factors (recall that matrix multiplication is defined to be compatible with composition of transformations),
 
 then determinants do measure the volume scaling factor.
 
