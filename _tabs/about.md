@@ -45,5 +45,9 @@ This section serves as both a self-introduction and a way to hold myself account
 ## Grades
 
 Core average score: 94.58 (rank: 1/62).\\
+<<<<<<< HEAD
 8 major-related courses (out of a total of 9) were completed with scores of 95+.\\
+=======
+8 major-related courses out of 9 were completed with scores of 95+, except Physics I (Honors).\\
+>>>>>>> origin/main
 Mathematical Analysis I & II (Honors) were both completed with scores of 100.
