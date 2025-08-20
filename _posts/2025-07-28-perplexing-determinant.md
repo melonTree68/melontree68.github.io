@@ -5,9 +5,8 @@ created: '2025-07-27'
 categories:
 - Mathematics
 tags:
-- math
+- mathematics
 - linear algebra
-- abstraction
 description: The awkward introduction and definition of determinants often puzzle
   beginners, including me. However, as the level of abstraction increases, its motivation
   becomes clearer and the underlying elegance emerges.
