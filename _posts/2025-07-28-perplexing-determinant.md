@@ -5,9 +5,8 @@ created: '2025-07-27'
 categories:
 - Mathematics
 tags:
-- math
+- mathematics
 - linear algebra
-- abstraction
 description: The awkward introduction and definition of determinants often puzzle
   beginners, including me. However, as the level of abstraction increases, its motivation
   becomes clearer and the underlying elegance emerges.
@@ -140,7 +139,7 @@ Suppose $\alpha\in V_{\text{alt}}^{(m)}$. If $v_1,\dots,v_m$ is linearly depende
 Suppose $a_1v_1+\cdots+a_mv_m=0$ for some $a_1,\dots,a_m\in\F$, not all zero. Let $k$ be the greatest integer with $a_k\neq0$. Then
 
 $$
-v_k=\frac{a_1}{a_k}v_1+\cdots+\frac{a_k-1}{a_k}v_{k-1}.
+v_k=\frac{a_1}{a_k}v_1+\cdots+\frac{a_{k-1}}{a_k}v_{k-1}.
 $$
 
 Hence

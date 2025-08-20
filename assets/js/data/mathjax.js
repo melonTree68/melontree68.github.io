@@ -61,6 +61,7 @@ MathJax = {
             tr: "\\operatorname{tr}",
             rank: "\\operatorname{rank}",
             sgn: "\\operatorname{sgn}",
+            dist: "\\operatorname{dist}",
         },
     }
 };
