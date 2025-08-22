@@ -29,4 +29,4 @@ $e$ is a cut edge of $T$. Removing $e$ results in a cut $(A,B)$ of $T$. Because 
 Because $(A,B)$ is a cut, $E(T)\cap(A\times B)=\emptyset$. $e_j\not\in T$ follows from that it crosses the cut.
 
 ### Step 4. $w(e_j)\geq w(e)$.
-Because $e_j\not\in T$, adding $e_j$ to $T$ produces a unique cycle $C'$. The number of edges in $C'$ across the cut is even, but in $T$ there is only one edge $e$ across the cut. Hence $e,e_j\in C'$. By the minimality of $T$, $w(e_j)\geq w(e)$. Q.E.D.
+Because $e_j\not\in T$, adding $e_j$ to $T$ produces a unique cycle $C'$. The number of edges in $C'$ across the cut is even, but in $T$ there is only one edge $e$ across the cut. Hence $e,e_j\in C'$. By the minimality of $T$, $w(e_j)\geq w(e)$. $\square$
