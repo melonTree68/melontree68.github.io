@@ -1,16 +1,17 @@
 ---
 layout: post
-title: 'Least Squares and Its Applications Beyond Linear Equations'
+title: Least Squares and Its Applications Beyond Linear Equations
 created: '2025-08-03'
 categories:
 - Mathematics
 tags:
 - math
 - linear algebra
-description: The best approximate solution to a system of linear equations, and applications beyond linear equations.
+description: The best approximate solution to a system of linear equations, and applications
+  beyond linear equations.
 math: true
+date: 2025-08-22 21:29 +0800
 ---
-
 ## The Question
 
 Suppose we are solving a system of $m$ linear equations in $n$ unknowns. We write the equations as $Ax=b$, where $A\in\R^{m,n},b\in\R^m$.
