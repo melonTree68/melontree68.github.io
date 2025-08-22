@@ -12,7 +12,7 @@ description: This post is part of a series of algorithm notes originally intende
 math: true
 date: 2025-08-20 22:26 +0800
 ---
-> This post is part of a series of algorithm notes originally intended only for myself. If you find yourself lacking some background knowledge while reading, that's completely normal --- these notes were never meant to be a comprehensive introduction. I won't go into all the prerequisites here. Nevertheless, I hope these notes can still provide some inspiration, even if the details are sometimes a bit sketchy.
+> This post is part of a series of algorithm notes originally intended only for myself. If you find yourself lacking some background knowledge while reading, that's completely normal --- these notes were never meant to be a comprehensive introduction.
 {: .prompt-warning }
 
 We prove that for an MST $T$ of a graph $G$, and a connected subgraph $H$ of $G$, $T\cap H$ is contained in some MST of $H$.
