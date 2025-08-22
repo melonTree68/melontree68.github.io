@@ -212,8 +212,124 @@ The definition of the pseudoinverse is obviously too computationally complicated
 > I do not plan to prove the SVD in this article because it requires familiarity with too many prerequisites. I will state the theorem without proving it.
 {: .prompt-warning }
 
+{% capture thm_content %}
+Suppose $T\in\L(V,W)$ and $s_1,\dots,s_m$ are the positive singular values of $T$. Then there exist orthonormal lists $e_1,\dots,e_m$ in $V$ and $f_1,\dots,f_m$ in $W$ such that for any $v\in V$,
+
+$$
+Tv=s_1\inp v{e_1}f_1+\cdots+s_m\inp v{e_m}f_m.
+$$
+
+Equivalently, for $A\in\F^{m,n}$, there exist unitary matrices $U\in\F^{m,m}$ and $V\in\F^{n,n}$ such that
+
+$$
+A=U\Sigma V^*,
+$$
+
+where $\Sigma\in\F^{m,n}$ is defined as
+
+$$
+\Sigma_{j,k}=\left\{\begin{align*}
+    \sigma_k&\quad,j=k\\
+    0&\quad,\text{otherwise}.
+\end{align*}\right.
+$$
+
+Here the $\sigma$'s are the singular values of $A$.
+{% endcapture %}
+{% include thms/theorem.html title="singular value decomposition" content=thm_content %}
+
+The equivalence between the two forms can be shown by basic understanding of matrix multiplication. Because nice numerical techniques exist for computing the SVD of a matrix, the pseudoinverse can be calculated efficiently by the theorem below.
+
+{% capture thm_content %}
+Suppose $T\in\L(V,W)$ and
+
+$$
+Tv=s_1\inp v{e_1}f_1+\cdots+s_m\inp v{e_m}f_m
+$$
+
+is an SVD of $T$. Then for any $w\in W$,
+
+$$
+T^\dagger w=\frac1{s_1}\inp w{f_1}e_1+\cdots+\frac1{s_m}\inp w{f_m}e_m.
+$$
+
+Equivalently, if $A=U\Sigma V^\*$ is an SVD of $A\in\F^{m,n}$, then $A^+=V\Sigma^+U^\*$, where $\Sigma^+\in\F^{n,m}$ is defined as
+
+$$
+(\Sigma^+)_{j,k}=\left\{\begin{align*}
+    \frac1{\sigma_k}&\quad,j=k\\
+    0&\quad,\text{otherwise}.
+\end{align*}\right.
+$$
+
+{% endcapture %}
+{% include thms/theorem.html title="pseudoinverse via SVD" content=thm_content %}
+
+We prove the linear map version of the result above. The proof contains some background knowledge about SVD which will not be introduced in this article. The matrix version follows from the definition of matrix multiplication.
+
+{% capture pf_content %}
+Suppose $w\in W$. By some property of SVD, $f_1,\dots,f_m$ is an orthonormal basis of $\im T$. From the explicit expression of orthogonal projection operators (proved above),
+
+$$
+P_{\im T}w=\inp w{f_1}f_1+\cdots+\inp w{f_m}f_m.
+$$
+
+It suffices to show that $T^\dagger f_k=\frac1{s_k}e_k$ for $1\leq k\leq m$. That follows from that $T(\frac1{s_k}e_k)=f_k$ and that $\frac1{s_k}e_k\in(\ker T)^\perp$ (a property of SVD).
+{% endcapture %}
+{% include thms/proof.html content=pf_content %}
+
+
+## Applications
+
+Our abstraction of inner product spaces now enables us to work with vector spaces other than $\F^n$. Note that many results above hold as well in Hilbert spaces, but we do not talk about Hilbert spaces in this article and focus only on finite-dimensional cases.
+
+I will only mention one example of the various applications. Suppose we are looking for a polynomial $p$ with real coefficients and degree no greater than $5$ that best approximates the sine function on $[-\pi,\pi]$. Here (suppose that) "best" is in terms of minimizing
+
+$$
+\int_{-\pi}^\pi (p(x)-\sin x)^2\dx.
+$$
+
+We first make the vector space $C[-\pi,\pi]$ of continuous real-valued functions on $[-\pi,\pi]$ into an inner product space by defining
+
+$$
+\inp fg=\int_{-\pi}^\pi fg
+$$
+
+for every $f,g\in C[-\pi,\pi]$. Let $\mathcal P_5(\R)$ be the subspace (of $C[-\pi,\pi]$) of polynomials with real coefficients and degree no greater than $5$. We are looking for $p\in\mathcal P_5(\R)$ that minimizes $\norm{p-\sin(\cdot)}$. That is equivalent to projecting the sine function onto the subspace $\mathcal P_5(\R)$.
+
+We solve the problem with the explicit expression of orthogonal projection operators. First we perform the Gram-Schmidt process on the basis $1,x,\dots,x^5$ of $\mathcal P_5(\R)$. Mathematica tells me that the resulted orthonormal basis is[^fn-basis-p5r]
+
+$$
+\left\{\frac{1}{\sqrt{2 \pi }},\frac{\sqrt{\frac{3}{2}} x}{\pi ^{3/2}},\frac{3 \sqrt{\frac{5}{2}} x^2}{2 \pi ^{5/2}}-\frac{1}{2} \sqrt{\frac{5}{2 \pi }},\frac{5 \sqrt{\frac{7}{2}} x^3}{2 \pi ^{7/2}}-\frac{3 \sqrt{\frac{7}{2}} x}{2 \pi ^{3/2}},\frac{105 x^4}{8 \sqrt{2} \pi ^{9/2}}-\frac{45 x^2}{4 \sqrt{2} \pi ^{5/2}}+\frac{9}{8 \sqrt{2 \pi }},\frac{63 \sqrt{\frac{11}{2}} x^5}{8 \pi ^{11/2}}-\frac{35 \sqrt{\frac{11}{2}} x^3}{4 \pi ^{7/2}}+\frac{15 \sqrt{\frac{11}{2}} x}{8 \pi ^{3/2}}\right\}.
+$$
+
+Apply the explicit formula and we obtain the best approximation of the sine function
+
+$$
+\frac{693 x^5}{8 \pi ^6}-\frac{72765 x^5}{8 \pi ^8}+\frac{654885 x^5}{8 \pi ^{10}}-\frac{315 x^3}{4 \pi ^4}+\frac{39375 x^3}{4 \pi ^6}-\frac{363825 x^3}{4 \pi ^8}+\frac{105 x}{8 \pi ^2}-\frac{16065 x}{8 \pi ^4}+\frac{155925 x}{8 \pi ^6}.
+$$
+
+It is numerically approximately equal to
+
+$$
+0.987862 x - 0.155271 x^3 + 0.00564312 x^5.
+$$
+
+![approx display](/assets/img/posts/least-squares/approx_display.png){: w="500" }
+*The orange solid line is the sine function, and the blue dashed line is our polynomial approximation.*
+
+![approx diff](/assets/img/posts/least-squares/approx_diff.png){: w="500" }
+*The error $p(x)-\sin x$.*
+
+![approx comp](/assets/img/posts/least-squares/approx_comp.png){: w="500" }
+*The blue line is the error of $p$, and the orange line is that of the Taylor polynomial.*
+
+> If we project onto the subspace $\spn(1,\cos x,\dots,\cos nx,\sin x,\dots,\sin nx)$, the resulted best approximation is precisely the Fourier series. That is a very profound subject.
+{: .prompt-info }
+
 
 ## Footnotes
 
 [^fn-gram-schmidt]: In this sense, the Gram-Schmidt process is unique, as you can prove.
 [^fn-dagger]: Type `T^\dagger` to produce $T^\dagger$ in $\LaTeX$. Some people use $T^+$, especially for matrices. Some people use the dagger symbol for conjugate transpose.
+[^fn-basis-p5r]: 吓哭了。
