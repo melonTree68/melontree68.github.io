@@ -24,11 +24,11 @@ $$
 \end{align*}\right.
 $$
 
-The textbook tells us to perform Gaussian elimination on the augmented matrix $\begin{bmatrix}A&b\end{bmatrix}$. The resulted row echelon form tells us whether the system has solutions and what the solutions are. However, when no exact solutions exist, sometimes we still want a "best approximate" solution, and this time Gaussian elimination cannot help.
+The textbook tells us to perform Gaussian elimination on the augmented matrix $\begin{bmatrix}A&b\end{bmatrix}$. The resulted row echelon form tells us whether the system has a solution and what the solutions are. However, when no exact solutions exist, sometimes we still want a "best approximate" solution, and this time Gaussian elimination cannot help.
 
-Before proceeding, we must make precise the notion of a "best approximate solution". The solution $x^\*$ we seek is optimal in two senses.
-1. $x^\*$ should minimize the mean squared error (MSE) $\frac1m\norm{Ax-b}^2$ (this loss function is self-explanatory and intuitive). Equivalently, $x^\*$ minimizes $\norm{Ax-b}$. We call an $\hat x$ that minimizes MSE a least-squares solution.
-2. However, the least-squares solution may not be unique. Let $\hat x$ be one least-squares solution. If the kernel of $A$ is nontrivial (Note that $b\not\in\im A$ does not imply that $\ker A=\\{0\\}$.), then for any $x_0\in\ker A$, $\hat x+x_0$ also minimizes the MSE. Our desired solution $x^\*$ should be a least-squares solution with minimal norm. Note that $x^\*$ still may not be unique (e.g., when $A$ has two identical columns).
+To proceed, we must make precise the notion of a "best approximate solution". The solution $x^\*$ we seek is optimal in two senses.
+1. $x^\*$ should minimize the mean squared error (MSE) $\frac1m\norm{Ax-b}^2$ (this loss function is self-explanatory and intuitive). Equivalently, $x^\*$ minimizes $\norm{Ax-b}$. We call an $\hat x$ that minimizes the MSE a least-squares solution.
+2. However, the least-squares solution may not be unique. Let $\hat x$ be one least-squares solution. If the kernel of $A$ is nontrivial, then for any $x_0\in\ker A$, $\hat x+x_0$ also minimizes the MSE. Our desired solution $x^\*$ should be a least-squares solution with minimal norm. Note that $x^\*$ still may not be unique (e.g., when $A$ has two identical columns).
 
 In short, we are searching for $x^\*\in\R^n$ such that
 
@@ -39,10 +39,10 @@ In short, we are searching for $x^\*\in\R^n$ such that
 
 For our problem, some abstraction makes the picture clearer, and allows for further and more intriguing applications beyond solving linear equations.
 
-> For most the time (almost always), you can think of a finite-dimensional inner product space as $\F^n$ with the Euclidean inner product. Doing so removes unnecessary complication and simplifies your thoughts.
-{: .prompt-tip}
-
 ### Inner Product Spaces
+
+> For most of the time (almost always), you can think of a finite-dimensional inner product space as $\F^n$ with the Euclidean inner product. Doing so removes unnecessary complication and simplifies your thoughts.
+{: .prompt-tip}
 
 Let $\F$ denote $\R$ or $\C$. An inner product space is a vector space $V$ over $\F$ along with a function (called inner product) $\inp\cdot\cdot:V\times V\to\F$ that satisfies the following axioms.
 1. Positivity: $\forall v\in V,\inp vv\geq0$.
@@ -86,7 +86,7 @@ $v$ is a linear combination of $e_1,\dots,e_n$. Applying $\inp\cdot{e_k}$ to bot
 
 ### Orthogonal Projections
 
-Recall that the Gram-Schmidt procedure (it holds *mutatis mutandis* for any inner product space) transforms an independent list $v_1,\dots,v_m$ in $V$ to an orthonormal list $e_1,\dots,e_m$ with $\inp{v_k}{e_k}>0$ and $\spn(v_1,\dots,v_k)=\spn(e_1,\dots,e_k)$ for each $1\leq k\leq m$.[^fn-gram-schmidt] The Gram-Schmidt procedure allows us to choose an orthonormal basis for a vector space, and to extend an orthonormal list to an orthonormal basis. We skip the proofs of some trivial results, which will be stated in the definitions.
+Recall that the Gram-Schmidt process (it holds *mutatis mutandis* for any (finite-dimensional) inner product space) transforms an independent list $v_1,\dots,v_m$ in $V$ to an orthonormal list $e_1,\dots,e_m$ with $\inp{v_k}{e_k}>0$ and $\spn(v_1,\dots,v_k)=\spn(e_1,\dots,e_k)$ for each $1\leq k\leq m$.[^fn-gram-schmidt] The Gram-Schmidt process allows us to choose an orthonormal basis for a vector space, and to extend an orthonormal list to an orthonormal basis. We skip the proofs of some trivial results, which will be stated in the definitions.
 
 {% capture def_content %}
 For $U$ a subspace of $V$, the orthogonal complement of $U$, denoted by $U^\perp$, is defined as
@@ -191,7 +191,7 @@ When the columns of $A$ is linearly dependent ($\dim\ker A>0$), the method above
 The ultimate weapon is easier to understand in the context of linear maps instead of matrices (at least to me). We first give the definition.[^fn-dagger]
 
 {% capture def_content %}
-Suppose $T\in\L(V,W)$. The Moore-Penrose Inverse, or pseudoinverse, of $T$ is a linear map from $W$ to $V$ defined as
+Suppose $T\in\L(V,W)$. The Moore-Penrose inverse, or pseudoinverse, of $T$ is a linear map from $W$ to $V$ defined as
 
 $$
 T^\dagger=(\rest T{(\ker T)^\perp})^{-1}P_{\im T}.
@@ -203,22 +203,17 @@ Note that $V=\ker T\oplus(\ker T)^\perp$. It can be shown that $TT^\dagger=P_{\i
 
 A moment's thought shows that $A^\dagger b$ is precisely what we are looking for.
 - $A(A^\dagger b)=P_{\im A}b$. Hence $A^\dagger b$ minimizes the MSE.
-- For any least-squares solution $\hat x$, $A\hat x=A(A^\dagger b)$. Thus $\hat x=(\hat x-A^\dagger b)+A^\dagger b$, where the first term is in $\ker T$ and the second term is in $(\ker T)^\perp$ by definition. Hence $\norm{A^\dagger b}\leq\norm{\hat x}$ by the Pythagorean Theorem.
+- For any least-squares solution $\hat x$, $A\hat x=P_{\im A}b=A(A^\dagger b)$. Thus $\hat x=(\hat x-A^\dagger b)+A^\dagger b$, where the first term is in $\ker A$ and the second term is in $(\ker A)^\perp$ by definition. Hence $\norm{A^\dagger b}\leq\norm{\hat x}$ by the Pythagorean Theorem.
 
-### Calculation by Singular Value Decomposition
+### Calculation via Singular Value Decomposition
 
 The definition of the pseudoinverse is obviously too computationally complicated to be practical. We show that the pseudoinverse can be calculated efficiently from the singular value decomposition (SVD).
 
-> I do not plan to talk about adjoint in this article because it requires too many prerequisites. The adjoint of $T\in\L(V,W)$ is the linear map $T^\*\in\L(W,V)$ such that for any $v\in V,w\in W$, $\inp{Tv}w=\inp v{T^\*w}$. All you need to know is that with respect to the same bases of $V$ and $W$, the matrix of $T^\*$ is the conjugate transpose of the matrix of $T$.
-{: .prompt-warning}
-
-{% capture def_content %}
-Suppose $T\in\L(V,W)$. The singular values $s_1,\dots,s_m$ of $T$ are the nonnegative square roots of the eigenvalues of $T^\*T$, listed in decreasing order, each included as many times as its multiplicity.
-{% endcapture %}
-{% include thms/definition.html content=def_content %}
+> I do not plan to prove the SVD in this article because it requires familiarity with too many prerequisites. I will state the theorem without proving it.
+{: .prompt-warning }
 
 
 ## Footnotes
 
-[^fn-gram-schmidt]: In this sense, the Gram-Schmidt procedure is unique, as you can prove.
-[^fn-dagger]: Type `T^\dagger` to produce $T^\dagger$ in $\LaTeX$. Some people use $T^+$, especially for matrices.
+[^fn-gram-schmidt]: In this sense, the Gram-Schmidt process is unique, as you can prove.
+[^fn-dagger]: Type `T^\dagger` to produce $T^\dagger$ in $\LaTeX$. Some people use $T^+$, especially for matrices. Some people use the dagger symbol for conjugate transpose.
