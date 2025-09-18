@@ -5,7 +5,7 @@ created: '2025-08-03'
 categories:
 - Mathematics
 tags:
-- math
+- mathematics
 - linear algebra
 description: The best approximate solution to a system of linear equations, and applications
   beyond linear equations.
