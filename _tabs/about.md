@@ -31,7 +31,7 @@ This section serves as both a self-introduction and a way to hold myself account
   - [ ] Abstract Algebra
   - [ ] Differential Geometry
   - [ ] Measure Theory
-  - [ ] Probability Theory (based on measure theory)
+  - [ ] Probability Theory
   - [ ] Stochastic Processes
   - [ ] Combinatorics
 - Computer Science and Artificial Intelligence
@@ -41,10 +41,10 @@ This section serves as both a self-introduction and a way to hold myself account
   - [ ] Deep Learning
   - [ ] Reinforcement Learning
 
-*Well, from the task list above, it seems that I am a complete idiot ...*
+*Well, from the task list above, it seems that I am a complete idiot...*
 
 ## Grades
 
-Core average score: 94.58 (rank: 1/62).\\
+Core average score: 94.58 (rank: 1/66).\\
 8 major-related courses (out of a total of 9) were completed with scores of 95+.\\
 Mathematical Analysis I & II (Honors) were both completed with scores of 100.
