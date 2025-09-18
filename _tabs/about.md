@@ -25,14 +25,15 @@ This section serves as both a self-introduction and a way to hold myself account
 
 - Mathematics
   - [ ] Calculus and Real Analysis (to be reviewed)
-  - [ ] Linear Algebra (to be reviewed)
+  - [x] Linear Algebra (to be reviewed)
   - [ ] Set Theory
   - [ ] Mathematical Logic
   - [ ] Abstract Algebra
-  - [ ] Classical Differential Geometry
+  - [ ] Differential Geometry
   - [ ] Measure Theory
   - [ ] Probability Theory (based on measure theory)
   - [ ] Stochastic Processes
+  - [ ] Combinatorics
 - Computer Science and Artificial Intelligence
   - [x] Data Structure
   - [ ] Algorithms and Complexity
