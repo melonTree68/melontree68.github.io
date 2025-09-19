@@ -38,6 +38,7 @@ This section serves as both a self-introduction and a way to hold myself account
   - [x] Data Structure
   - [ ] Algorithms and Complexity
   - [ ] Introduction to Theoretical Computer Science
+  - [ ] Machine Learning
   - [ ] Deep Learning
   - [ ] Reinforcement Learning
 
