@@ -24,16 +24,17 @@ As for the construction of this website, I might consider writing a separate pos
 This section serves as both a self-introduction and a way to hold myself accountable. As you see, I wish to learn so many things. Hopefully I can achieve my goals in the end.
 
 - Mathematics
-  - [ ] Calculus and Real Analysis (to be reviewed)
-  - [x] Linear Algebra (to be reviewed)
-  - [ ] Set Theory
-  - [ ] Mathematical Logic
+  - [x] Calculus and Real Analysis (finished reviewing)
+  - [x] Linear Algebra (finished reviewing)
+  - [ ] General Topology
   - [ ] Abstract Algebra
   - [ ] Differential Geometry
   - [ ] Measure Theory
   - [ ] Probability Theory
   - [ ] Stochastic Processes
   - [ ] Combinatorics
+  - [ ] Mathematical Logic
+  - [ ] Category Theory
 - Computer Science and Artificial Intelligence
   - [x] Data Structure
   - [ ] Algorithms and Complexity
