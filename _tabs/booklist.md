@@ -16,6 +16,7 @@ I keep a list of materials that I have found helpful in my studies. Unless other
 - (Excerpt) *Mathematical Logic*, Heinz-Dieter Ebbinghaus et al.
 - (Not Finished) *Abstract Algebra*, Dummit & Foote
 - (Not Finished) *An Introduction to Manifolds*, Loring W. Tu
+- (Not Finished) *Measure, Integration & Real Analysis*, Sheldon Axler
 
 ## AI-Generated Notes
 
