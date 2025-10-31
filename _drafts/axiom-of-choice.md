@@ -131,14 +131,50 @@ for each $\alpha\in\ord$. One should be convinced that the recursion rule can be
 
 That immediately leads to a contradiction. Let $a^{-1}:\im a\to\ord$ be the surjective inverse function. By the axiom schema of replacement, $\im a^{-1}=\ord$ is a set, a contradiction. That completes the proof.
 
-
-
-
 ### Zorn's lemma implies AC
+
+This proof is a typical application of Zorn's lemma. Suppose $\emptyset\not\in X\neq\emptyset$. Let $U=\bigcup X$.
+
+Let
+
+$$
+P=\cbra{(f:X'\to U):X'\subseteq X, f(S)\in S,\forall S\in X'}
+$$
+
+be a poset under inclusion, i.e., function extension.
+
+Because we can easily construct an $f$ by taking $X'$ to be a singleton, $P$ is nonempty. Let
+
+$$
+T=\{(f_i:X_i\to U):i\in I\}
+$$
+
+be a chain in $P$. The following steps lead to that $\bigcup T$ is an upper bound of $T$ in $P$. The proof of each step is nothing more than verifying the definitions and hence is omitted.
+
+1. $$\bigcup T=\bigcup_{i\in I}f_i:\bra{\bigcup_{i\in I}X_i}\to U.$$
+2. $$\bigcup T\in P.$$
+3. $\bigcup T$ is an upper bound of $T$.
+
+By Zorn's lemma, $P$ has a maximal element $\tilde f:\tilde X\to U$. If $\tilde X=X$ then $\tilde f$ is a choice function we seek. Otherwise take $S\in X\backslash\tilde X$ and $x\in S$, and $\bra{\tilde f\cup\\{(S,x)\\}}\in P$ contradicts the maximality of $\tilde f$. The proof is completed.
 
 
 ### Zorn's lemma implies the well-ordering theorem
 
+This proof is essentially the same as the proof that Zorn's lemma implies AC. Suppose $X$ is a nonempty set.
+
+Let
+
+$$
+P=\cbra{(X',\leq):X'\subseteq X\text{ is well ordered by }\leq}
+$$
+
+be partially ordered by
+
+$$
+(X',\leq_{X'})\leq(X'',\leq_{X''})\iff X'\subseteq X'',(\leq_{X'})\subseteq(\leq_{X''}).
+$$
+
+For a chain $T$ in $P$, we can similarly show that $\bigcup T$ is an upper bound of $T$ in $P$. By Zorn's lemma, $P$ has a maximal element which is necessarily $X$ with a well-ordering, completing the proof.
 
 ### AC implies the well-ordering theorem
 
