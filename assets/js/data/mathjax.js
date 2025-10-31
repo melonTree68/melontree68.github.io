@@ -22,6 +22,7 @@ MathJax = {
             bra: ["\\left(#1\\right)", 1],
             sbra: ["\\left[#1\\right]", 1],
             cbra: ["\\left\\{#1\\right\\}", 1],
+            abra: ["\\left\\langle#1\\right\\rangle", 1],
             norm: ["\\left\\lVert#1\\right\\rVert", 1],
             inp: ["\\left\\langle#1,#2\\right\\rangle", 2],
             abs: ["\\left|#1\\right|", 1],
@@ -62,6 +63,8 @@ MathJax = {
             rank: "\\operatorname{rank}",
             sgn: "\\operatorname{sgn}",
             dist: "\\operatorname{dist}",
+
+            ord: "\\mathrm{Ord}",
         },
     }
 };
