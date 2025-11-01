@@ -67,7 +67,7 @@ Results that will be covered (in the following order, without any interdependenc
 - Every infinite set has a countable subset.
 - Every vector space has a basis.
 - There does not exist a perfect generalization of the length of an interval to all subsets of $\RR$. (We will make that notion precise.)
-- Every finitely generated group possesses maximal subgroups.
+- Every nontrivial finitely generated group possesses maximal subgroups.
 
 > One can search the internet for the (quite simple) definitions of a partial order, a total order, and a well-order.
 {: .prompt-tip}
@@ -98,7 +98,7 @@ Results that will be covered (in the following order, without any interdependenc
 
 ### AC implies Zorn's lemma
 
-For the sake of contradiction, assume that $P$ is a nonempty poset s.t.
+For the sake of contradiction, assume that $P$ is a nonempty poset such that
 
 1. Every chain in $P$ has an upper bound;
 2. $P$ has no maximal elements.
@@ -255,9 +255,9 @@ In linear algebra courses we usually deal only with finite-dimensional vector sp
 - A subset $A\subseteq V$ is said to be spanning if every vector in $V$ is a linear combination of $A$.
 - A linearly independent subset $A\subseteq V$ is said to be a basis of $V$ if it spans $V$.
 
-In short, a linear combination has to be finite. This is fairly reasonable: we hope $\\{1,x,x^2,\dots\\}$ to be a basis of the vector space $\RR[x]$ of polynomials in $x$ with real coefficients, and we do not hope power series to mess everything up.
+In short, a linear combination has to be finite. This is fairly reasonable: we hope $\\{1,x,x^2,\dots\\}$ to be a basis of the vector space $\RR[x]$ of polynomials in $x$ with real coefficients, and we do not hope power series to mess things up.
 
-Notice that a basis is a linearly independent subset that is maximal under set inclusion. That motivates the usage of Zorn's lemma. Let $P$ be the set of all linearly independent subsets of $V$, partially ordered by set inclusion. If $V=\\{0\\}$ then the result is trivial; hence assume $V$ is nontrivial. Taking $A$ to be the singleton of any nonzero vector leads to $P\neq\emptyset$.
+Notice that a basis is a linearly independent subset that is maximal under set inclusion. That motivates the use of Zorn's lemma. Let $P$ be the set of all linearly independent subsets of $V$, partially ordered by set inclusion. If $V=\\{0\\}$ then the result is trivial; hence assume $V$ is nontrivial. Taking $A$ to be the singleton of any nonzero vector leads to $P\neq\emptyset$.
 
 Let $T$ be a chain in $P$. Straightforward verifications of definitions lead to that $\bigcup T$ is an upper bound of $T$ in $P$. By Zorn's lemma, $P$ has a maximal element $B$. It has to span $V$, because otherwise let $v\in V$ be a vector not spanned by $B$, and $B\cup\\{v\\}\in P$ (as you can verify) contradicts the maximality of $B$. Now $B$ is a linearly independent subset that spans $V$, i.e., a basis of $V$.
 
@@ -296,65 +296,67 @@ For the sake of contradiction, assume such a $\mu$ does exist. We first derive s
 
 > (1) $\mu(\emptyset)=0$.
 > 
-> (2) (Finite additivity) For any pairwise disjoint $A_1,\dots,A_n\subseteq\RR$,
+> (2) If $A\subseteq B\subseteq\RR$, then $\mu(A)\leq\mu(B)$.
 > 
-> $$
-> \mu\bra{\bigcup_{k=1}^n A_k}=\sum_{k=1}^n\mu(A_k).
-> $$
-> 
-> (3) If $A\subseteq B\subseteq\RR$, then $\mu(A)\leq\mu(B)$.
-> 
-> (4) $\mu([a,b])=b-a$ for $a,b\in\RR\cup\\{-\infty,\infty\\}$.
-> 
-> (5) (Subadditivity) For any $\\{A_k\\}_{k\in\ZZ^+}\subseteq\P(\RR)$,
-> 
-> $$
-> \mu\bra{\bigcup_{k=1}^\infty A_k}\leq\sum_{k=1}^\infty\mu(A_k).
-> $$
-> 
-> (6) $\mu(A)=0$ for any at most countable subset $A\subseteq\RR$.
+> (3) $\mu([a,b])=b-a$ for $a,b\in\RR\cup\\{-\infty,\infty\\}$.
 
-(1) to (4) should be easy. To prove (1), take $A_1=(0,1)$, $A_2=A_3=\cdots=\emptyset$ and apply countable additivity. For (2), take $A_{n+1}=A_{n+2}=\cdots=\emptyset$ and apply countable additivity. For (3), take $A_1=A$, $A_2=B\backslash A$ and apply finite additivity. For (4), apply (3) to $(a,b)\subseteq[a,b]\subseteq(a-\epsilon,b+\epsilon)$.
-
-For (5),
-
-$$
-\mu\bra{\bigcup_{k=1}^\infty A_k}=\mu\bra{\bigcup_{k=1}^\infty A_k\backslash A_{k-1}}=\sum_{k=1}^\infty\mu(A_k\backslash A_{k-1})\leq\sum_{k=1}^\infty\mu(A_k),
-$$
-
-where the second equality follows from countable additivity and the last inequality follows from (3). Finite subadditivity holds similarly.
-
-For (6), the finite case $A=\\{a_1,\dots,a_n\\}$ follows from subadditivity and $A\subseteq\bigcup_{k=1}^n(a_k-\epsilon/n,a_k+\epsilon/n)$, and the countable case $A=\\{a_k\\}_{k\in\ZZ^+}$ follows from subadditivity and
-
-$$
-A\subseteq\bigcup_{k=1}^\infty\bra{a_k-\frac\epsilon{2^k},a_k+\frac\epsilon{2^k}}.
-$$
+To prove (1), take $A_1=(0,1)$, $A_2=A_3=\cdots=\emptyset$ and apply countable additivity. For (2), take $A_1=A$, $A_2=B\backslash A$, $A_3=A_4=\cdots=\emptyset$ and apply countable additivity. For (3), apply (2) to $(a,b)\subseteq[a,b]\subseteq(a-\epsilon,b+\epsilon)$.
 
 With all preparations made, we prove the theorem. Define an equivalence relation $\sim$ on $A=[-1,1]\cap\QQ$ by $a\sim b$ if $a-b\in\QQ$. Let $P=\\{[a]:a\in A\\}$ be the set of equivalence classes under $\sim$. By AC, let $f$ be a choice function on $P$ and let $V=\im f$. So $f$ assigns to each equivalence class a representative of it, and $V$ contains a unique representative of every equivalence class.
 
 Let $\\{q_1,q_2,\dots\\}$ be a pairwise distinct enumeration of all rationals in $[-2,2]$, or more formally, an injective sequence with image $[-2,2]\cap\QQ$. We shall be working with $\bigcup_{k=1}^\infty(q_k+V)$.
 
-First note that the $(q_k+V)$'s are pairwise disjoint. Assume that $(q_i+V)\cap(q_j+V)\neq\emptyset$, i.e., there exist $a,b\in[-1,1]$ with $a\not\sim b$ (by definition of $V$) and $q_i+a=q_j+b$. But $q_i,q_j$ are rational, which implies that $a-b\in\QQ$, a contradiction.
+First note that the $(q_k+V)$'s are pairwise disjoint. Assume that $(q_i+V)\cap(q_j+V)\neq\emptyset$, i.e., there exist $a,b\in[-1,1]$ with $a\not\sim b$ (by definition of $V$) such that $q_i+a=q_j+b$. But $q_i,q_j$ are rational, which implies that $a-b\in\QQ$, a contradiction.
 
-On the one hand, $[-1,1]\subseteq\bigcup_{k=1}^\infty(q_k+V)$.
-
-$$
-2\leq\mu\bra{\bigcup_{k=1}^\infty(q_k+V)}=\sum_{k=1}^\infty\mu(q_k+V)=\sum_{k=1}^\infty\mu(V),
-$$
-
-where the first inequality follows from property (3) and (4), the second equality from countable additivity, and the last equality from translation invariance. It follows that $\mu(V)>0$.
-
-On the other hand, $[-3,3]\supseteq\bigcup_{k=1}^\infty(q_k+V)$ implies
+Observe that
 
 $$
-6\geq\mu\bra{\bigcup_{k=1}^\infty(q_k+V)}=\sum_{k=1}^\infty\mu(q_k+V)=
+[-1,1]\subseteq\bigcup_{k=1}^\infty(q_k+V)\subseteq[-3,3].
 $$
 
+The second inclusion is obvious. We show the first inclusion. For $x\in[-1,1]$, let $a$ be the unique element of $V\cap[x]$. Then $x=(x-a)+a$ where $x-a\in[-2,2]\cap\QQ$ and $a\in V$. Hence $x\in(x-a)+V$.
+
+The formula above implies that
+
+$$
+2\leq\mu\bra{\bigcup_{k=1}^\infty(q_k+V)}=\sum_{k=1}^\infty\mu(q_k+V)=\sum_{k=1}^\infty\mu(V)\leq6,
+$$
+
+where the inequalities follow from property (2) and (3), and the equalities follow from countable additivity and translation invariance. But it is not possible for $\mu(V)\in[0,\infty]$ to satisfy $2\leq\sum_{k=1}^\infty\mu(V)\leq6$. We reach a contradiction and the proof is completed.
 
 
 
+> A small minority of mathematicians objects to the use of the axiom of choice. Nonetheless, the proof above warns one away from trying to construct a notion of size that satisfies all desired properties, because any such construction will necessarily contradict the axiom of choice, which is consistent with ZF.
+{: .prompt-warning}
 
-### Every finitely generated group possesses maximal subgroups.
+> A similar proof (after deriving some properties of outer measure) leads to that the outer measure on $\RR$ is not additive.
+{: .prompt-info}
+
+> This disappointing fact leads to the definitions of $\sigma$-algebras and measurable spaces, measures, measurable functions, integration with respect to a measure...
+{: .prompt-info}
+
+### Every nontrivial finitely generated group possesses maximal subgroups.
+
+This is a purely group-theretical question so no motivations will be given.
+
+We first consider the (very easy) finite case. Let $G$ be a finite group of order $n>1$. Assume for the sake of contradiction that $G$ has no maximal subgroups. We start from the trivial subgroup $1\leq G$. $1$ is not maximal; hence there exists some subgroup $H_1$ such that $1<H_1<G$. $H_1$ is not maximal; hence we have some $1<H_1<H_2<G$. Repeat this process $n$ times ($n$ is finite) and we have $1<H_1<\cdots<H_n<G$. But $1<H_1<\cdots<H_n$ implies that $\|H_n\|>n=\|G\|$, a contradiction. The proof is completed.
+
+For the infinite case such technique no longer works. We need that $G$ is finitely generated. Let $G=\abra{g_1,\dots,g_n}$ be a finitely generated group.
+
+Let $P=\\{H:H<G\\}$ be a poset under $\leq$ (set inclusion). For a chain $T=\\{H_i:i\in I\\}$ in $P$, we show that $\bigcup T$ is an upper bound of $T$ in $P$ following the steps below.
+
+- Show that $\bigcup T\leq G$.
+
+$\bigcup T$ is nonempty. For $x,y\in\bigcup T$, suppose $x\in H_i$ and $y\in H_j$. Because $T$ is a chain, $H_i\leq H_j$ or $H_j\leq H_i$. Without loss of generality, suppose $H_i\leq H_j$. Then $x,y\in H_j$, which implies that $xy^{-1}\in H_j\subseteq\bigcup T$.
+
+- Show that $\bigcup T\neq G$.
+
+Assume that $\bigcup T\in G$. Then $g_k\in H_{i_k}$ for each $1\leq k\leq n$. Because $T$ is a chain, $H_{i_1}\leq H_{i_2}$ or $H_{i_2}\leq H_{i_1}$. Then $g_1,g_2\in H_{i_1}$ (W.L.O.G suppose this way) or $g_1,g_2\in H_{i_2}$. Now $g_1,g_2\in H_{i_1}$ and $g_3\in H_{i_3}$. Because $T$ is linearly ordered, $g_1,g_2,g_3$ all belong to one subgroup. Repeat this process $n$ times ($n$ is finite) and we have $g_1,\dots,g_n\in H_{i_j}$ for some $i_j\in I$. Then $H_{i_j}=G$, a contradiction.
+
+- Show that $\bigcup T$ is an upper bound of $T$. (Trivial.)
+
+By Zorn's lemma, $P$ has a maximal element, namely a maximal subgroup.
+
 
 
 
