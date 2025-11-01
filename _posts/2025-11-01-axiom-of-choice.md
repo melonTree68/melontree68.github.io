@@ -123,7 +123,7 @@ So $F(T)$ is the set of all upper bounds of the chain $T$, and $G(a)$ is the set
 Now consider $\\{F(T):T\in\mathcal T\\}$, treated as a collection of nonempty subsets of $P$ indexed by $\mathcal T$, and $\\{G(a):a\in P\\}$, treated as a collection of nonempty subsets of $P$ indexed by $P$. By AC, let $f$ be a choice function on $\\{F(T):T\in\mathcal T\\}$ and $g$ a choice function on $\\{G(a):a\in P\\}$, i.e.,
 
 - $f:\mathcal T\to P$ satisfies $(c\leq f(T),\forall c\in T)$ for each $T\in\mathcal T$;
-- $g:P\to P$ satisfies $x\leq f(x), x\neq f(x)$ for each $x\in P$.
+- $g:P\to P$ satisfies $x\leq g(x), x\neq g(x)$ for each $x\in P$.
 
 So $f(T)$ selects an upper bound of the chain $T$, and $g(x)$ selects an element strictly greater than $x$.
 
