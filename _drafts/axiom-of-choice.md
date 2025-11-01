@@ -332,6 +332,27 @@ $$
 
 With all preparations made, we prove the theorem. Define an equivalence relation $\sim$ on $A=[-1,1]\cap\QQ$ by $a\sim b$ if $a-b\in\QQ$. Let $P=\\{[a]:a\in A\\}$ be the set of equivalence classes under $\sim$. By AC, let $f$ be a choice function on $P$ and let $V=\im f$. So $f$ assigns to each equivalence class a representative of it, and $V$ contains a unique representative of every equivalence class.
 
+Let $\\{q_1,q_2,\dots\\}$ be a pairwise distinct enumeration of all rationals in $[-2,2]$, or more formally, an injective sequence with image $[-2,2]\cap\QQ$. We shall be working with $\bigcup_{k=1}^\infty(q_k+V)$.
+
+First note that the $(q_k+V)$'s are pairwise disjoint. Assume that $(q_i+V)\cap(q_j+V)\neq\emptyset$, i.e., there exist $a,b\in[-1,1]$ with $a\not\sim b$ (by definition of $V$) and $q_i+a=q_j+b$. But $q_i,q_j$ are rational, which implies that $a-b\in\QQ$, a contradiction.
+
+On the one hand, $[-1,1]\subseteq\bigcup_{k=1}^\infty(q_k+V)$.
+
+$$
+2\leq\mu\bra{\bigcup_{k=1}^\infty(q_k+V)}=\sum_{k=1}^\infty\mu(q_k+V)=\sum_{k=1}^\infty\mu(V),
+$$
+
+where the first inequality follows from property (3) and (4), the second equality from countable additivity, and the last equality from translation invariance. It follows that $\mu(V)>0$.
+
+On the other hand, $[-3,3]\supseteq\bigcup_{k=1}^\infty(q_k+V)$ implies
+
+$$
+6\geq\mu\bra{\bigcup_{k=1}^\infty(q_k+V)}=\sum_{k=1}^\infty\mu(q_k+V)=
+$$
+
+
+
+
 
 ### Every finitely generated group possesses maximal subgroups.
 
