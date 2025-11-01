@@ -152,7 +152,7 @@ $$
 P=\cbra{(f:X'\to U):X'\subseteq X, f(S)\in S,\forall S\in X'}
 $$
 
-be a poset under inclusion, i.e., function extension.
+be a poset under set inclusion, i.e., function extension.
 
 Because we can easily construct an $f$ by taking $X'$ to be a singleton, $P$ is nonempty. Let
 
@@ -221,13 +221,63 @@ $$
 \phi(S,x,X)=((S\in X\land x\in S\land\forall x(x\in S\to s\leq x))\lor(S\not\in X\land x=\emptyset)).
 $$
 
-> We cannot give a well-order to every set in $X$ because that requires possibly infinite choices (one choice for each set in $X$), which per se requires the axiom of choice. Our approach requires only one choice, namely choosing a well-order on $\bigcup X$.
+> We cannot give a well-order to every set in $X$ because that requires many choices (one choice for each set in $X$), which per se requires the axiom of choice. Our approach requires only one choice, namely choosing a well-order on $\bigcup X$.
 {: .prompt-warning}
 
 
 ## Consequences of the Axiom of Choice
 
 After all those proofs (they actually can be skipped without hindering the understanding of the results below), we arrive at some interesting and perhaps surprising consequences of the axiom of choice.
+
+### Every infinite set has a countable subset.
+
+The problem with the naive proof in the introduction is that inductions (of natural numbers) can never truly reach the infinity. Transfinite recursion comes to the rescue.
+
+Let $X$ be an infinite set. By AC, let $f$ be a choice function on $\P(X)\backslash\\{\emptyset\\}$. Define an $\omega$-sequence $\abra{a_n:n<\omega}$ by transfinite recursion:
+
+$$
+a_n=f(X\backslash\im a\restriction_n)=f(X\backslash\{a_0,\dots,a_{n-1}\}).
+$$
+
+Here $\omega$ is the least nonzero limit ordinal, i.e., the set $\NN$ of natural numbers in the usual sense, and $n<\omega$ simply means $n\in\NN$. We use this notation to emphasize that we are performing a transfinite recursion (with no limit steps).
+
+That solves the problem of infinity and well-defines an injective (infinite) sequence in $X$, proving the desired result.
+
+### Every vector space has a basis.
+
+In linear algebra courses we usually deal only with finite-dimensional vector spaces. Let $V$ be a vector space (of arbitrary dimension) over a field $K$.
+
+> One might search the internet for the definition of a vector space over a field. But in this article the field can be simply taken to be $\RR$.
+{: .prompt-info}
+
+- A linear combination of a (possibly infinite) subset $A\subseteq V$ is a *finite* sum of the form $c_1v_1+\cdots+c_nv_n$, where $a_i\in K,v_i\in A$ for each $i$.
+- A subset $A\subseteq V$ is said to be linearly independent if there do not exist $v,v_1,\dots,v_n\in A$ such that $v$ is a linear combination of $v_1,\dots,v_n$.
+- A subset $A\subseteq V$ is said to be spanning if every vector in $V$ is a linear combination of $A$.
+- A linearly independent subset $A\subseteq V$ is said to be a basis of $V$ if it spans $V$.
+
+In short, a linear combination has to be finite. This is fairly reasonable: we hope $\\{1,x,x^2,\dots\\}$ to be a basis of the vector space $\RR[x]$ of polynomials in $x$ with real coefficients, and we do not hope power series to mess everything up.
+
+Notice that a basis is a linearly independent subset that is maximal under set inclusion. That motivates the usage of Zorn's lemma. Let $P$ be the set of all linearly independent subsets of $V$, partially ordered by set inclusion. If $V=\\{0\\}$ then the result is trivial; hence assume $V$ is nontrivial. Taking $A$ to be the singleton of any nonzero vector leads to $P\neq\emptyset$.
+
+Let $T$ be a chain in $P$. Straightforward verifications of definitions lead to that $\bigcup T$ is an upper bound of $T$ in $P$. By Zorn's lemma, $P$ has a maximal element $B$. It has to span $V$, because otherwise let $v\in V$ be a vector not spanned by $B$, and $B\cup\\{v\\}\in P$ (as you can verify) contradicts the maximality of $B$. Now $B$ is a linearly independent subset that spans $V$, i.e., a basis of $V$.
+
+### There does not exist a perfect generalization of the length of an interval to all subsets of $\RR$.
+
+> The Riemann integral is not good enough:
+> 
+> - It does not handle functions with too many discontinuities;
+> - It does not handle unbounded functions;
+> - It interacts badly with limits (in terms of interchanging limits and integrals).
+
+For a better theory of integration, a notion of size (a *measure*) is needed for more general subsets of $\RR$ than intervals.
+
+> Do not ask any more questions regarding the sentence above, unless you would like to run into the **hell** of measure theory, real analysis and functional analysis.
+{: .prompt-danger}
+
+No worry, we do not talk about $\sigma$-algebras and measures here. We only prove the following disappointing fact that there does not exist a perfect notion of measure that satisfies all desired properties.
+
+
+### Every finitely generated group possesses maximal subgroups.
 
 
 
