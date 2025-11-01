@@ -138,7 +138,7 @@ Define $h:\mathcal T\to P$ by $h=g\circ f$. This function assigns to each chain 
 Define a sequence $\abra{a_\alpha:\alpha\in\ord}$ by transfinite recursion:
 
 $$
-a_\alpha=h(\im a\restriction_\alpha)=h(\im\abra{a_\xi:\xi<\alpha})=h(\cbra{a_\xi:\xi<\alpha})
+a_\alpha=h(\im a\restriction_\alpha)=h(\cbra{a_\xi:\xi<\alpha})
 $$
 
 for each $\alpha\in\ord$. One should be convinced that the recursion rule can be formulated as a function on the class of all transfinite sequences. By the property of $h$ as noted above, for any ordinal $\alpha$, $a\restriction_\alpha$ is an injective transfinite sequence whose image is a chain in $P$, ensuring that the recursion is well-defined.
@@ -213,15 +213,15 @@ The idea is simple and straightforward. AC is needed only when no explicit rule 
 We make the above notion precise by explicitly constructing a choice function. Let $\phi(x,y,p)$ be the first-order formula
 
 $$
-\phi(S,s,X)=(S\in X\land x\in S\land\forall x(x\in S\to s\leq x)).
+\phi(S,s,X)=(S\in X\land s\in S\land\forall x(x\in S\to s\leq x)).
 $$
 
-We wrote $\phi(x,y,p)$ above to emphasize that $\phi$ is meant to be a function. It can be verified that $\phi$ is the function that maps each set in $X$ to the least element of it, a choice function as desired.
+We wrote $\phi(x,y,p)$ above to emphasize that $\phi$ is meant to be a function (with parameter $p$). It can be verified that $\phi$ is the function that maps each set in $X$ to the least element of it, a choice function as desired.
 
 If you prefer something more formal, we can make $\phi$ a function on the universe $V$ and restrict this class function to obtain a set function (a set) *in* the set $X\times\bigcup X$.
 
 $$
-\phi(S,x,X)=((S\in X\land x\in S\land\forall x(x\in S\to s\leq x))\lor(S\not\in X\land x=\emptyset)).
+\phi(S,s,X)=((S\in X\land s\in S\land\forall x(x\in S\to s\leq x))\lor(S\not\in X\land s=\emptyset)).
 $$
 
 > We cannot give a well-order to every set in $X$ because that requires many choices (one choice for each set in $X$), which per se requires the axiom of choice. Our approach requires only one choice, namely choosing a well-order on $\bigcup X$.
@@ -365,7 +365,7 @@ By Zorn's lemma, $P$ has a maximal element, namely a maximal subgroup.
 
 It is quite a surprise that I wrote so many words in a single day. In fact, I started writing this blog at midnight on November 1, 2025, and finished the main part by 6 p.m. the same day, writing more than 3,000 words.
 
-I have always found set theory quite an interesting subject (as has one of my good friends). Set theory and manifold theory are probably the two branches of mathematics I find the most appealing. However, both subjects are very abstract and obscure (at least to me), and it takes an unacceptably large amount of time (for a sophomore in AI) to study even the basics of them. Due to the absence of a textbook suitable for my level, and perhaps also to my lack of mathematical maturity, I sadly gave up studying set theory half a year ago. Now I am trying to read *An Introduction to Manifolds* by Loring W. Tu, a first-year graduate-level textbook on manifold theory assuming only one year of real analysis and a semester of abstract algebra (or so the author says). It takes me a great amount of time --- often spending half a day for less than 10 pages. I have no idea if this is a wrong choice, but wish me good luck.
+I have always found set theory quite an interesting subject (as has one of my good friends). Set theory and manifold theory are probably the two branches of mathematics I find the most appealing. However, both subjects are very abstract and obscure (at least to me), and it takes an unacceptably large amount of time (for a sophomore in AI) to study even the basics of them. Due to the absence of a textbook suitable for my level, and perhaps also to my lack of mathematical maturity, I sadly gave up studying set theory half a year ago. Now I am trying to read *An Introduction to Manifolds* by Loring W. Tu, a first-year graduate-level textbook on manifold theory that assumes only one year of real analysis and a semester of abstract algebra. It takes me a great amount of time --- often spending half a day for less than 10 pages. I have no idea if this is a wrong choice, but wish me good luck.
 
 
 ## Footnotes
