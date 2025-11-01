@@ -32,7 +32,7 @@ Instead of throwing the definitions and theorems straight at your face, we first
 1. Is it true that every infinite set has a countable (countably infinite) subset?
 2. Is it true that the Cartesian product of any nonempty collection of nonempty sets is nonempty?
 
-For the first question, you may say that hey you are just too stupid. We can construct an infinite sequence $$\{x_n\}_{n\in\NN}\subseteq X$$ by the following. Take $x_0\in X$. Inductively, after $$\{x_n\}_{n\leq m}$$ is fixed, take $$x_{m+1}\in X\backslash\{x_n\}_{n\leq m}$$ because $X$ is infinite. But you only proved by induction (recall what induction means) that for any $n\in\NN$ there exists a (finite) sequence of length $n$ in $X$, rather than an infinite one. A correct proof (of course the proposition is true) is given below using the axiom of choice; you can scroll down if you are really curious.
+For the first question, you may say that hey you are just too stupid. We can construct an infinite sequence $$\{x_n\}_{n\in\NN}\subseteq X$$ by the following. Take $x_0\in X$. Inductively, after $$\{x_n\}_{n\leq m}$$ is fixed, take $$x_{m+1}\in X\backslash\{x_n\}_{n\leq m}$$ because $X$ is infinite. But you only proved by induction (recall what induction means) that for any $n\in\NN$ there exists a (finite) injective sequence of length $n$ in $X$, rather than an infinite one. A correct proof (of course the proposition is true) is given below using the axiom of choice; you can scroll down if you are really curious.
 
 For the second question, we first make precise the notion of the Cartesian product of an arbitrary collection of sets. Suppose $I$ is an index set and $\mathcal A=\\{A_i:i\in I\\}$ is a collection of nonempty sets. Define the Cartesian product
 
