@@ -271,10 +271,66 @@ Let $T$ be a chain in $P$. Straightforward verifications of definitions lead to 
 
 For a better theory of integration, a notion of size (a *measure*) is needed for more general subsets of $\RR$ than intervals.
 
-> Do not ask any more questions regarding the sentence above, unless you would like to run into the **hell** of measure theory, real analysis and functional analysis.
+> Do not ask any further questions regarding the sentence above, unless you would like to run into the hell of measure theory, real analysis and functional analysis.
 {: .prompt-danger}
 
-No worry, we do not talk about $\sigma$-algebras and measures here. We only prove the following disappointing fact that there does not exist a perfect notion of measure that satisfies all desired properties.
+No worry, we do not talk about $\sigma$-algebras and measures here. We only prove the following disappointing fact that there does not exist a perfect notion of size that satisfies all desired properties.
+
+{% capture thm_content %}
+There does not exist a function $\mu:\P(\RR)\to[0,\infty]$ satisfying all the following properties.
+
+- For every open interval $I=(a,b)$, $\mu(I)=\ell(I)$ where $\ell(I)=b-a$ is the length of the interval. Here $a<b$ and $a,b\in\RR\cup\\{-\infty,\infty\\}$.
+- (Countable additivity) For any pairwise disjoint sequence $\\{A_k\\}_{k\in\ZZ^+}\subseteq\P(\RR)$,
+
+$$
+\mu\bra{\bigcup_{k=1}^\infty A_k}=\sum_{k=1}^\infty\mu(A_k).
+$$
+
+- (Translation invariance) For every $A\subseteq\RR$ and $t\in\RR$, $\mu(t+A)=\mu(A)$, where $t+A=\\{t+a:a\in A\\}$.
+{% endcapture %}
+{% include thms/theorem.html title="Vitali" content=thm_content %}
+
+All conditions above seem natural: our notion of size should be a generalization of the length of intervals; countable additivity is needed in order to take limits (the core of calculus); a natural notion of size should be invariant under translation. However, we now show that such a perfect function does not exist, assuming the axiom of choice.
+
+For the sake of contradiction, assume such a $\mu$ does exist. We first derive some handy properties of $\mu$.
+
+> (1) $\mu(\emptyset)=0$.
+> 
+> (2) (Finite additivity) For any pairwise disjoint $A_1,\dots,A_n\subseteq\RR$,
+> 
+> $$
+> \mu\bra{\bigcup_{k=1}^n A_k}=\sum_{k=1}^n\mu(A_k).
+> $$
+> 
+> (3) If $A\subseteq B\subseteq\RR$, then $\mu(A)\leq\mu(B)$.
+> 
+> (4) $\mu([a,b])=b-a$ for $a,b\in\RR\cup\\{-\infty,\infty\\}$.
+> 
+> (5) (Subadditivity) For any $\\{A_k\\}_{k\in\ZZ^+}\subseteq\P(\RR)$,
+> 
+> $$
+> \mu\bra{\bigcup_{k=1}^\infty A_k}\leq\sum_{k=1}^\infty\mu(A_k).
+> $$
+> 
+> (6) $\mu(A)=0$ for any at most countable subset $A\subseteq\RR$.
+
+(1) to (4) should be easy. To prove (1), take $A_1=(0,1)$, $A_2=A_3=\cdots=\emptyset$ and apply countable additivity. For (2), take $A_{n+1}=A_{n+2}=\cdots=\emptyset$ and apply countable additivity. For (3), take $A_1=A$, $A_2=B\backslash A$ and apply finite additivity. For (4), apply (3) to $(a,b)\subseteq[a,b]\subseteq(a-\epsilon,b+\epsilon)$.
+
+For (5),
+
+$$
+\mu\bra{\bigcup_{k=1}^\infty A_k}=\mu\bra{\bigcup_{k=1}^\infty A_k\backslash A_{k-1}}=\sum_{k=1}^\infty\mu(A_k\backslash A_{k-1})\leq\sum_{k=1}^\infty\mu(A_k),
+$$
+
+where the second equality follows from countable additivity and the last inequality follows from (3). Finite subadditivity holds similarly.
+
+For (6), the finite case $A=\\{a_1,\dots,a_n\\}$ follows from subadditivity and $A\subseteq\bigcup_{k=1}^n(a_k-\epsilon/n,a_k+\epsilon/n)$, and the countable case $A=\\{a_k\\}_{k\in\ZZ^+}$ follows from subadditivity and
+
+$$
+A\subseteq\bigcup_{k=1}^\infty\bra{a_k-\frac\epsilon{2^k},a_k+\frac\epsilon{2^k}}.
+$$
+
+With all preparations made, we prove the theorem. Define an equivalence relation $\sim$ on $A=[-1,1]\cap\QQ$ by $a\sim b$ if $a-b\in\QQ$. Let $P=\\{[a]:a\in A\\}$ be the set of equivalence classes under $\sim$. By AC, let $f$ be a choice function on $P$ and let $V=\im f$. So $f$ assigns to each equivalence class a representative of it, and $V$ contains a unique representative of every equivalence class.
 
 
 ### Every finitely generated group possesses maximal subgroups.
