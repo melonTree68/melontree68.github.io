@@ -224,7 +224,7 @@ $$
 \phi(S,s,X)=((S\in X\land s\in S\land\forall x(x\in S\to s\leq x))\lor(S\not\in X\land s=\emptyset)).
 $$
 
-> We cannot give a well-order to every set in $X$ because that requires many choices (one choice for each set in $X$), which per se requires the axiom of choice. Our approach requires only one choice, namely choosing a well-order on $\bigcup X$.
+> We cannot give a well-order to every set in $X$ because that requires many choices (one choice of well-order for each set in $X$), which per se requires the axiom of choice. Our approach requires only one choice, namely choosing a well-order on $\bigcup X$.
 {: .prompt-warning}
 
 
