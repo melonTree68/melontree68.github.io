@@ -31,13 +31,18 @@ Instead of throwing the definitions and theorems straight at your face, we first
 
 For the first question, you may say that hey you are just too stupid. We can construct an infinite sequence $$\{x_n\}_{n\in\NN}\subseteq X$$ by the following. Take $x_0\in X$. Inductively, after $$\{x_n\}_{n\leq m}$$ is fixed, take $$x_{m+1}\in X\backslash\{x_n\}_{n\leq m}$$ because $X$ is infinite. But you only proved by induction (recall what induction means) that for any $n\in\NN$ there exists a (finite) sequence of length $n$ in $X$, rather than an infinite one. A correct proof (of course the proposition is true) is given below using the axiom of choice; you can scroll down if you are really curious.
 
-For the second question, we first make precise the notion of the Cartesian product of a nonempty collection of nonempty sets. Suppose $I\neq\emptyset$ is an index set and $\mathcal A=\\{A_i:i\in I\\}\not\ni\emptyset$ is a (nonempty) collection of nonempty sets. Define the Cartesian product
+For the second question, we first make precise the notion of the Cartesian product of an arbitrary collection of sets. Suppose $I$ is an index set and $\mathcal A=\\{A_i:i\in I\\}$ is a collection of nonempty sets. Define the Cartesian product
 
 $$
-\prod_{i\in I}A_i:=\cbra{(f:I\to\bigcup\mathcal A):f(i)\in A_i,\forall i\in I}.
+\prod_{i\in I}A_i=\cbra{(f:I\to\bigcup\mathcal A):f(i)\in A_i,\forall i\in I}.
 $$
 
-That $\prod_i A_i\neq\emptyset$ is equivalent to the existence of an $f:I\to\bigcup\mathcal A$ with $f(i)\in A_i$ for each $i$, called a *choice function*. This is precisely what the axiom of choice says!
+When $I=\emptyset$ or $\emptyset\in\mathcal A$ then the Cartesian product is certainly empty. Otherwise, that $\prod_i A_i\neq\emptyset$ is equivalent to the existence of an $f:I\to\bigcup\mathcal A$ with $f(i)\in A_i$ for each $i$, called a *choice function*. This is precisely what the axiom of choice says!
+
+{% capture def_content %}
+Let $I$ be an index set and $\mathcal A=\\{A_i:i\in I\\}$ be a collection of sets indexed by $I$. A choice function on $\mathcal A$ is a function $f:I\to\bigcup\mathcal A$ such that $f(i)\in A_i$ for each $i\in I$. Note that a set $X$ can always be indexed by itself: $X=\\{x:x\in X\\}$, so a choice function on $X$ is a function $f:X\to\bigcup X$ such that $f(S)\in S$ for each $S\in X$.
+{% endcapture %}
+{% include thms/definition.html content=def_content %}
 
 <div class="theorem-box">
   <div class="theorem-title">
@@ -53,6 +58,9 @@ That $\prod_i A_i\neq\emptyset$ is equivalent to the existence of an $f:I\to\big
 
 Enough of those confusing words about axiomatic set theory. Next we give two equivalent formulations of AC (Zorn's lemma and the well-ordering theorem) and prove their equivalence. After that, we present some interesting and perhaps surprising consequences. For readers' convenience, we here list the results that will be covered, and state Zorn's lemma and the well-ordering theorem.
 
+> If you are not at all interested in the proofs of the equivalence of the three formulations, you can totally skip them all without hindering the understanding of the interesting and perhaps surprising results about the axiom of choice.
+{: .prompt-tip}
+
 Results that will be covered (in the following order, without any interdependence):
 
 - (Done) The Cartesian product of any nonempty collection of nonempty sets is nonempty.
@@ -61,7 +69,7 @@ Results that will be covered (in the following order, without any interdependenc
 - There does not exist a perfect generalization of the length of an interval to all subsets of $\RR$. (We will make that notion precise.)
 - Every finitely generated group possesses maximal subgroups.
 
-> One can search the internet for the (quite simple) definitions of a partial order, a total order, and a well order.
+> One can search the internet for the (quite simple) definitions of a partial order, a total order, and a well-order.
 {: .prompt-tip}
 
 <div class="theorem-box">
@@ -90,9 +98,9 @@ Results that will be covered (in the following order, without any interdependenc
 
 ### AC implies Zorn's lemma
 
-For the sake of contradiction, assume that $P\neq\emptyset$ is a poset s.t.
+For the sake of contradiction, assume that $P$ is a nonempty poset s.t.
 
-1. Every chain in $P$ has an upper bound.
+1. Every chain in $P$ has an upper bound;
 2. $P$ has no maximal elements.
 
 Let $\mathcal T$ be the set of all chains in $P$; it is a set because it is a subclass of the power set $\P(P)$. Define functions 
@@ -109,7 +117,7 @@ $$
 
 So $F(T)$ is the set of all upper bounds of the chain $T$, and $G(a)$ is the set of elements strictly greater than $a$. That $F(T)$ and $G(a)$ are nonempty follows from the two conditions above.
 
-Now consider $\\{F(T):T\in\mathcal T\\}$, treated as a collection of nonempty subsets of $P$ indexed by $\mathcal T$, and $\\{G(a):a\in P\\}$, treated as a collection of nonempty subsets of $P$ indexed by $P$. By AC, let $f$ be a choice function of $\\{F(T):T\in\mathcal T\\}$ and $g$ a choice function of $\\{G(a):a\in P\\}$, i.e.,
+Now consider $\\{F(T):T\in\mathcal T\\}$, treated as a collection of nonempty subsets of $P$ indexed by $\mathcal T$, and $\\{G(a):a\in P\\}$, treated as a collection of nonempty subsets of $P$ indexed by $P$. By AC, let $f$ be a choice function on $\\{F(T):T\in\mathcal T\\}$ and $g$ a choice function on $\\{G(a):a\in P\\}$, i.e.,
 
 - $f:\mathcal T\to P$ satisfies $(c\leq f(T),\forall c\in T)$ for each $T\in\mathcal T$;
 - $g:P\to P$ satisfies $x\leq f(x), x\neq f(x)$ for each $x\in P$.
@@ -118,8 +126,11 @@ So $f(T)$ selects an upper bound of the chain $T$, and $g(x)$ selects an element
 
 Define $h:\mathcal T\to P$ by $h=g\circ f$. This function assigns to each chain an upper bound outside the chain.
 
-> Knowledge of ordinals and transfinite recursion is required in the following step. One can refer to *Set Theory* by Thomas Jech. I personally think the chapter on ordinals is very difficult, but Qinxiang Cao told me it is very easy!
+> The following steps require some knowledge of ordinals and transfinite recursion. One can refer to Chapter 2 of *Set Theory* by Thomas Jech.
 {: .prompt-tip}
+
+> I personally think the chapter on ordinals is very difficult, but Qinxiang Cao told me it is very easy!
+{: .prompt-danger}
 
 Define a sequence $\abra{a_\alpha:\alpha\in\ord}$ by transfinite recursion:
 
@@ -133,7 +144,7 @@ That immediately leads to a contradiction. Let $a^{-1}:\im a\to\ord$ be the surj
 
 ### Zorn's lemma implies AC
 
-This proof is a typical application of Zorn's lemma. Suppose $\emptyset\not\in X\neq\emptyset$. Let $U=\bigcup X$.
+This proof is a typical application of Zorn's lemma. Suppose $\emptyset\not\in X\neq\emptyset$ is a nonempty collection of nonempty sets. Let $U=\bigcup X$.
 
 Let
 
@@ -160,12 +171,12 @@ By Zorn's lemma, $P$ has a maximal element $\tilde f:\tilde X\to U$. If $\tilde 
 
 ### Zorn's lemma implies the well-ordering theorem
 
-This proof is essentially the same as the proof that Zorn's lemma implies AC. Suppose $X$ is a nonempty set.
+This proof is essentially the same as the proof that Zorn's lemma implies AC. Suppose $X$ is a nonempty set (if it is empty the desired result holds trivially).
 
 Let
 
 $$
-P=\cbra{(X',\leq):X'\subseteq X\text{ is well ordered by }\leq}
+P=\cbra{(X',\leq):X'\subseteq X\text{ is well-ordered by }\leq}
 $$
 
 be partially ordered by
@@ -178,8 +189,45 @@ For a chain $T$ in $P$, we can similarly show that $\bigcup T$ is an upper bound
 
 ### AC implies the well-ordering theorem
 
+Suppose $X$ is a nonempty set (if it is empty the desired result holds trivially). By AC, let $f$ be a choice function on $\P(X)\backslash\\{\emptyset\\}$.
+
+Define a sequence $a$ by transfinite recursion:
+
+$$
+a_\alpha=f(P\backslash\im\abra{a_\xi:\xi<\alpha})=f(P\backslash\{a_\xi:\xi<\alpha\}).
+$$
+
+If $\\{a_\alpha:\alpha<\theta\\}=P$ for some $\theta\in\ord$, then the process terminates here and we obtain a $\theta$-sequence $\abra{a_\alpha:\alpha<\theta}$. This is actually always the case because otherwise $\ord$ would be a set by the injectivity of $a$ (see the next paragraph).
+
+Because $f$ is a choice function, $a$ is injective and hence a bijection between an ordinal $\theta$ and $P$. That gives the desired well-ordering: for $a_\alpha,a_\beta\in P$, $a_\alpha\leq a_\beta$ if and only if $\alpha\leq\beta$. That this is a well-ordering follows from that every ordinal, including $\theta$, is well-ordered.
 
 ### The well-ordering theorem implies AC
+
+Suppose $\emptyset\not\in X\neq\emptyset$ is a nonempty collection of nonempty sets. By the well-ordering theorem, let $\bigcup X$ be well-ordered by $\leq$.
+
+The idea is simple and straightforward. AC is needed only when no explicit rule of selection can be given (see the first quote at the beginning of the article and the first footnote). The well-order gives us a canonical way to make the selection, so we do not need AC.
+
+We make the above notion precise by explicitly constructing a choice function. Let $\phi(x,y,p)$ be the first-order formula
+
+$$
+\phi(S,s,X)=(S\in X\land x\in S\land\forall x(x\in S\to s\leq x)).
+$$
+
+We wrote $\phi(x,y,p)$ above to emphasize that $\phi$ is meant to be a function. It can be verified that $\phi$ is the function that maps each set in $X$ to the least element of it, a choice function as desired.
+
+If you prefer something more formal, we can make $\phi$ a function on the universe $V$ and restrict this class function to obtain a set function (a set) *in* the set $X\times\bigcup X$.
+
+$$
+\phi(S,x,X)=((S\in X\land x\in S\land\forall x(x\in S\to s\leq x))\lor(S\not\in X\land x=\emptyset)).
+$$
+
+> We cannot give a well-order to every set in $X$ because that requires possibly infinite choices (one choice for each set in $X$), which per se requires the axiom of choice. Our approach requires only one choice, namely choosing a well-order on $\bigcup X$.
+{: .prompt-warning}
+
+
+## Consequences of the Axiom of Choice
+
+After all those proofs (they actually can be skipped without hindering the understanding of the results below), we arrive at some interesting and perhaps surprising consequences of the axiom of choice.
 
 
 
