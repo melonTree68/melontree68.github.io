@@ -358,6 +358,13 @@ Assume that $\bigcup T\in G$. Then $g_k\in H_{i_k}$ for each $1\leq k\leq n$. Be
 By Zorn's lemma, $P$ has a maximal element, namely a maximal subgroup.
 
 
+## Afterword
+
+It is quite a surprise that I wrote so many words in a single day. In fact, I started writing this blog at midnight on November 1, 2025, and finished the main part by 6 p.m. the same day, writing more than 3,000 words.
+
+I have always found set theory quite an interesting subject (as has one of my good friends). Set theory and manifold theory are probably the two branches of mathematics I find the most appealing. However, both subjects are very abstract and obscure (at least to me), and it takes an unexpectedly and unacceptably large amount of time to study even the basics of them. Due to the absence of a textbook suitable for my level, and probably also to my lack of mathematical maturity, I sadly gave up the study of set theory half a year ago. Now I am trying to read *An Introduction to Manifolds* by Loring W. Tu, a first-year graduate level textbook on manifold theory assuming only one year of real analysis and a semester of abstract algebra (or so the author says). Wish me good luck.
+
+The idea of writing this blog actually emerges just from an exercise in my abstract algebra textbook (to use Zorn's lemma to prove that every nontrivial finitely generated group possesses maximal subgroups). For this exercise I read its appendix on Zorn's lemma, which somewhat rekindles 
 
 
 
