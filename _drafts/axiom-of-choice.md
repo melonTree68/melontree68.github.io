@@ -365,6 +365,8 @@ It is quite a surprise that I wrote so many words in a single day. In fact, I st
 I have always found set theory quite an interesting subject (as has one of my good friends). Set theory and manifold theory are probably the two branches of mathematics I find the most appealing. However, both subjects are very abstract and obscure (at least to me), and it takes an unacceptably large amount of time (for a sophomore in AI) to study even the basics of them. Due to the absence of a textbook suitable for my level, and perhaps also to my lack of mathematical maturity, I sadly gave up studying set theory half a year ago. Now I am trying to read *An Introduction to Manifolds* by Loring W. Tu, a first-year graduate-level textbook on manifold theory assuming only one year of real analysis and a semester of abstract algebra (or so the author says). It takes me a great amount of time --- often spending half a day for less than 10 pages. I have no idea if this is a wrong choice, but wish me good luck.
 
 
+## Footnotes
+
 [^Russell]: The axiom of choice is needed only when we cannot give an explicit way to make the selection.
 [^Bona]: This is a joke. Although the three are mathematically equivalent, many mathematicians find the axiom of choice intuitive, the well-ordering principle counterintuitive, and Zorn's lemma too complex for any intuition. I have the same feeling. :)
 [^ZFC]: There are other models, some of which hair-raising. Set theorists are definitely no human.
