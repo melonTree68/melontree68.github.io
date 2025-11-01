@@ -232,7 +232,7 @@ $$
 
 After all those proofs (they actually can be skipped without hindering the understanding of the results below), we arrive at some interesting and perhaps surprising consequences of the axiom of choice.
 
-### Every infinite set has a countable subset.
+### Every infinite set has a countable subset
 
 The problem with the naive proof in the introduction is that inductions (of natural numbers) can never truly reach the infinity. Transfinite recursion comes to the rescue.
 
@@ -246,7 +246,7 @@ Here $\omega$ is the least nonzero limit ordinal, i.e., the set $\NN$ of natural
 
 That solves the problem of infinity and well-defines an injective (infinite) sequence in $X$, proving the desired result.
 
-### Every vector space has a basis.
+### Every vector space has a basis
 
 In linear algebra courses we usually deal only with finite-dimensional vector spaces. Let $V$ be a vector space (of arbitrary dimension) over a field $K$.
 
@@ -264,7 +264,7 @@ Notice that a basis is a linearly independent subset that is maximal under set i
 
 Let $T$ be a chain in $P$. Straightforward verifications of definitions lead to that $\bigcup T$ is an upper bound of $T$ in $P$. By Zorn's lemma, $P$ has a maximal element $B$. It has to span $V$, because otherwise let $v\in V$ be a vector not spanned by $B$, and $B\cup\\{v\\}\in P$ (as you can verify) contradicts the maximality of $B$. Now $B$ is a linearly independent subset that spans $V$, i.e., a basis of $V$.
 
-### There does not exist a perfect generalization of the length of an interval to all subsets of $\RR$.
+### There does not exist a perfect generalization of the length of an interval to all subsets of $\RR$
 
 > The Riemann integral is not good enough:
 > 
@@ -338,7 +338,7 @@ where the inequalities follow from property (2) and (3), and the equalities foll
 > This disappointing fact leads to the definitions of $\sigma$-algebras and measurable spaces, measures, measurable functions, integration with respect to a measure...
 {: .prompt-info}
 
-### Every nontrivial finitely generated group possesses maximal subgroups.
+### Every nontrivial finitely generated group possesses maximal subgroups
 
 This is a purely group-theretical question so no motivations will be given.
 
