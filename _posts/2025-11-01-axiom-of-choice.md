@@ -253,6 +253,15 @@ $$
 > We cannot give a well-order to every set in $X$ because that requires many choices (one choice of well-order for each set in $X$), which per se requires the axiom of choice. Our approach requires only one choice, namely choosing a well-order on $\bigcup X$.
 {: .prompt-warning}
 
+> The reader might become overly suspicious and doubt if one choice (or two, or ten) is allowed without AC. It is legitimate, by mathematical logic. One might refer to Chapter IV of *Mathematical Logic* by Heinz-Dieter Ebbinghaus et al. Sequent calculus contains a sequent rule that allows one to make one choice:
+>
+> $$
+> \frac{\Gamma\quad\phi\frac yx\quad\psi}{\Gamma\quad\exists x\phi\quad\psi}\quad\text{if $y$ is not free in }\Gamma\,\exists x\phi\,\psi.
+> $$
+>
+> Or in Qinxiang Cao's notation, $\phi[x\mapsto t]\vdash\exists x\phi$ (from his lecture note on April 11, 2025).
+{: .prompt-info}
+
 
 ## Consequences of the Axiom of Choice
 
