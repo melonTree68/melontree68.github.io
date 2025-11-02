@@ -43,7 +43,7 @@ The other problem can be properly fixed. The problem is that you only proved by 
 {% capture thm_content %}
 Given a function $G$ on the class of all finite sequences, there exists a unique function $F$ on $\NN$, i.e., an infinite sequence, such that $F(n)=G(F\restriction_n)$ for each $n\in\NN$.
 {% endcapture %}
-{% include thms/theorem.html title="" content=thm_content %}
+{% include thms/theorem.html title="Recursion of Natural Numbers" content=thm_content %}
 
 {% capture pf_content %}
 We define $F$ by a first-order formula. We only describe it in natural language and one should be convinced that it can be converted to a nice first-order formula $\phi(n,y,G)$.
