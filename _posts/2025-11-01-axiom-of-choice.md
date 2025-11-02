@@ -302,7 +302,7 @@ In linear algebra courses we usually deal only with finite-dimensional vector sp
 > One might search the internet for the definition of a vector space over a field. But in this article the field can be simply taken to be $\RR$.
 {: .prompt-info}
 
-- A linear combination of a (possibly infinite) subset $A\subseteq V$ is a *finite* sum of the form $c_1v_1+\cdots+c_nv_n$, where $a_i\in K,v_i\in A$ for each $i$.
+- A linear combination of a (possibly infinite) subset $A\subseteq V$ is a *finite* sum of the form $c_1v_1+\cdots+c_nv_n$, where $c_i\in K,v_i\in A$ for each $i$.
 - A subset $A\subseteq V$ is said to be linearly independent if there do not exist $v,v_1,\dots,v_n\in A$ such that $v$ is a linear combination of $v_1,\dots,v_n$.
 - A subset $A\subseteq V$ is said to be spanning if every vector in $V$ is a linear combination of $A$.
 - A linearly independent subset $A\subseteq V$ is said to be a basis of $V$ if it spans $V$.
