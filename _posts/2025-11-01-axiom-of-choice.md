@@ -36,7 +36,7 @@ Instead of throwing the definitions and theorems straight at your face, we first
 
 For the first question, you may say that hey you are just too stupid. We can easily construct an infinite sequence $$\{x_n\}_{n\in\NN}$$ in $X$ by the following. Take $x_0\in X$. Inductively, after $$\{x_n\}_{n\leq m}$$ is fixed, take $x_{m+1}\in X\backslash\\{x_n\\}_{n\leq m}\neq\emptyset$ because $X$ is infinite.
 
-This method has two problems. The first is that the many (countably infinite) choices of $x_{m+1}\in X\backslash\\{x_n\\}_{n\leq m}$ cannot be carried out without admitting (at least some weakened version of) the axiom of choice. The meaning of the last sentence will be further explained later.
+This method has two problems. The first is that the many (countably infinite) choices of $x_{m+1}\in X\backslash\\{x_n\\}_{n\leq m}$ cannot be carried out without admitting (at least some weakened version of) the axiom of choice. The meaning of the last sentence will be explained later.
 
 The other problem can be properly fixed. The problem is that you only proved by induction (recall what induction means) that for any $n\in\NN$ there exists a (finite) injective sequence of length $n$ in $X$, rather than an infinite one. Recursion will remedy the situation.
 
@@ -48,11 +48,11 @@ Given a function $G$ on the class of all finite sequences, there exists a unique
 {% capture pf_content %}
 We define $F$ by a first-order formula. We only describe it in natural language and one should be convinced that it can be converted to a nice first-order formula $\phi(n,y,G)$.
 
-$F(n)=x\iff$ there is a sequence $\abra{a_m:m<n}$ such that:
+$F(n)=x\iff$ there is an $n$-sequence $\abra{a_m:m<n}$ such that:
 1. For every $m<n$, $a_m=G(\abra{a_k:k<m})$;
 2. $x=G(\abra{a_m:m<n})$.
 
-One can prove by induction that for each $n\in\NN$ $F(n)$ is unique; hence $F$ is uniquely determined by (2). And one can further prove by induction that for each $n\in\NN$ there is an $n$-sequence satisfying (1).
+One can prove by induction that for each $n\in\NN$, $F(n)$ is unique; hence $F$ is a function uniquely determined by (2). And one can further prove by induction that for each $n\in\NN$ there is an $n$-sequence satisfying (1).
 {% endcapture %}
 {% include thms/proof.html content=pf_content %}
 
@@ -69,7 +69,7 @@ $$
 \prod_{i\in I}A_i=\cbra{(f:I\to\bigcup\mathcal A):f(i)\in A_i,\forall i\in I}.
 $$
 
-If $I=\emptyset$ or $\emptyset\in\mathcal A$ then the Cartesian product is certainly empty. Otherwise, that $\prod_i A_i\neq\emptyset$ is equivalent to the existence of an $f:I\to\bigcup\mathcal A$ with $f(i)\in A_i$ for each $i$, called a *choice function*. This is precisely what the axiom of choice says!
+If $I=\emptyset$ or $\emptyset\in\mathcal A$ then the Cartesian product is certainly empty. Otherwise, that $\prod_i A_i\neq\emptyset$ is equivalent to the existence of an $f:I\to\bigcup\mathcal A$ with $f(i)\in A_i$ for each $i$, called a *choice function* on $\mathcal A$. This is precisely what the axiom of choice says!
 
 {% capture def_content %}
 Let $I$ be an index set and $\mathcal A=\\{A_i:i\in I\\}$ be a collection of sets indexed by $I$. A choice function on $\mathcal A$ is a function $f:I\to\bigcup\mathcal A$ such that $f(i)\in A_i$ for each $i\in I$. Note that a set $X$ can always be indexed by itself: $X=\\{x:x\in X\\}$, so a choice function on $X$ is a function $f:X\to\bigcup X$ such that $f(S)\in S$ for each $S\in X$.
@@ -170,7 +170,7 @@ $$
 
 for each $\alpha\in\ord$. One should be convinced that the recursion rule can be formulated as a function on the class of all transfinite sequences. By the property of $h$ as noted above, for any ordinal $\alpha$, $a\restriction_\alpha$ is an injective transfinite sequence whose image is a chain in $P$, ensuring that the recursion is well-defined.
 
-That immediately leads to a contradiction. Let $a^{-1}:\im a\to\ord$ be the surjective inverse function. By the axiom schema of replacement, $\im a^{-1}=\ord$ is a set, a contradiction. That completes the proof.
+That immediately leads to a contradiction. Let $a^{-1}:P\supseteq\im a\to\ord$ be the surjective inverse function. By the axiom schema of replacement, $\im a^{-1}=\ord$ is a set, a contradiction. That completes the proof.
 
 ### Zorn's lemma implies AC
 
@@ -226,7 +226,7 @@ $$
 a_\alpha=f(P\backslash\im\abra{a_\xi:\xi<\alpha})=f(P\backslash\{a_\xi:\xi<\alpha\}).
 $$
 
-If $\\{a_\alpha:\alpha<\theta\\}=P$ for some $\theta\in\ord$, then the process terminates here and we obtain a $\theta$-sequence $\abra{a_\alpha:\alpha<\theta}$. This is actually always the case because otherwise $\ord$ would be a set by the injectivity of $a$ (see the next paragraph).
+If $\\{a_\alpha:\alpha<\theta\\}=P$ for some $\theta\in\ord$, then the process terminates here and we obtain a $\theta$-sequence $\abra{a_\alpha:\alpha<\theta}$. This is actually always the case. If not, $a:\ord\to P$ is injective (see the next paragraph). Apply the axiom schema of replacement to $a^{-1}:P\supseteq\im a\to\ord$ leads to that $\ord$ is a set, which is not true.
 
 Because $f$ is a choice function, $a$ is injective and hence a bijection between an ordinal $\theta$ and $P$. That gives the desired well-ordering: for $a_\alpha,a_\beta\in P$, $a_\alpha\leq a_\beta$ if and only if $\alpha\leq\beta$. That this is a well-ordering follows from that every ordinal, including $\theta$, is well-ordered.
 
