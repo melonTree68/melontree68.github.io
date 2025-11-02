@@ -1,0 +1,431 @@
+% xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{enumerate}
+\usepackage[inline]{enumitem}
+\usepackage{thmtools}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage{titling}
+\usepackage{hyperref}
+
+% \usepackage{fontspec}
+% \usepackage{unicode-math}
+% \setmainfont{TeX Gyre Termes}
+% \setmathfont[Scale=0.93]{TeX Gyre Pagella Math}
+
+
+% ---------- Preamble ----------
+\pagestyle{fancyplain} % Make all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\geometry{
+    textwidth=160mm,
+    top=25mm,
+    bottom=25mm,
+}
+\setlist[enumerate]{
+    label=\textnormal{(\arabic*)},
+    % leftmargin=2.5em,
+    topsep=0.5em,
+    itemsep=0em,
+}
+\setlist[itemize]{
+    topsep=0.5em,
+    itemsep=0em,
+}
+% \everymath{\displaystyle}
+
+
+% ---------- Theorem environments ----------
+\theoremstyle{plain} % default
+\newtheorem{thm}{Theorem}
+\newtheorem{thms}[thm]{Theorems}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{props}[thm]{Propositions}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+
+\newtheorem*{ac}{The Axiom of Choice (AC)}
+\newtheorem*{zorn}{Zorn's Lemma}
+\newtheorem*{wo}{The Well-Ordering Theorem}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{rmks}{Remarks}
+
+
+% ---------- Symbol Macros ----------
+\newcommand{\bra}[1]{\mathopen{}\left(#1\right)}
+\newcommand{\sbra}[1]{\mathopen{}\left[#1\right]}
+\newcommand{\cbra}[1]{\mathopen{}\left\{#1\right\}}
+\newcommand{\abra}[1]{\mathopen{}\left\langle#1\right\rangle}
+\newcommand{\norm}[1]{\mathopen{}\left\lVert#1\right\rVert}
+\newcommand{\inp}[2]{\mathopen{}\left\langle#1,#2\right\rangle}
+\newcommand{\abs}[1]{\mathopen{}\left|#1\right|}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\ord}{\mathrm{Ord}}
+\DeclareMathOperator{\im}{im}
+
+
+% ---------- Title Section ----------
+\title{
+    The Axiom of Choice: Equivalent Formulations and Surprising Consequences
+}
+\author{Zhijie Chen}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+What is the mysterious axiom of choice? Why the hell do we need it even just to show that every infinite set has a countable subset? Why does every vector space have a basis? \dots
+
+\tableofcontents
+\newpage
+
+\begin{quote}
+    To choose one sock from each of infinitely many pairs of socks requires the Axiom of Choice, but for shoes the Axiom is not needed.\footnote{The axiom of choice is needed only when we cannot give an explicit way to make the selection.}
+
+    \hfill --- Bertrand Russell
+\end{quote}
+
+\begin{quote}
+    The Axiom of Choice is obviously true; the well-ordering principle is obviously false; and who can tell about Zorn's lemma?\footnote{This is a joke. Although the three are mathematically equivalent, many mathematicians find the axiom of choice intuitive, the well-ordering principle counterintuitive, and Zorn's lemma too complex for any intuition. I have the same feeling. :)}
+
+    \hfill --- Jerry Bona
+\end{quote}
+
+\begin{quote}
+    Thought is subversive and revolutionary, destructive and terrible; thought is merciless to privilege, established institutions, and comfortable habit. Thought looks into the pit of hell and is not afraid. Thought is great and swift and free, the light of the world, and the chief glory of man.
+
+    \hfill --- Bertrand Russell
+\end{quote}
+
+
+\section{Introduction}
+Instead of throwing the definitions and theorems straight at your face, we first raise some seemingly trivial but somewhat interesting questions.
+\begin{enumerate}
+    \item Is it true that every infinite set has a countable (countably infinite) subset?
+    \item Is it true that the Cartesian product of any nonempty collection of nonempty sets is nonempty?
+\end{enumerate}
+
+\paragraph{The first question}
+For the first question, you may say that hey you are just too stupid. We can easily construct an infinite sequence $\{x_n\}_{n\in\N}$ in $X$ by the following. Take $x_0\in X$. Inductively, after $\{x_n\}_{n\leq m}$ is fixed, take $x_{m+1}\in X\backslash\{x_n\}_{n\leq m}\neq\emptyset$ because $X$ is infinite.
+
+This method has two problems. The first is that the many (countably infinite) choices of $x_{m+1}\in X\backslash\{x_n\}_{n\leq m}$ cannot be carried out without admitting (at least some weakened version of) the axiom of choice. The meaning of the last sentence will be explained later.
+
+The other problem can be properly fixed. The problem is that you only proved by induction (recall what induction means) that for any $n\in\N$ there exists a (finite) injective sequence of length $n$ in $X$, rather than an infinite one. Recursion will remedy the situation.
+
+\begin{thm}[Recursion of Natural Numbers]
+    Given a function $G$ on the class of all finite sequences, there exists a unique function $F$ on $\N$, i.e., an infinite sequence, such that $F(n)=G(F\restriction_n)$ for each $n\in\N$.
+\end{thm}
+
+\begin{proof}
+    We define $F$ by a first-order formula. We only describe it in natural language and one should be convinced that it can be converted to a nice first-order formula $\phi(n,y,G)$.
+    \begin{center}
+        $F(n)=x\iff$ there is an $n$-sequence $\abra{a_m:m<n}$ such that:
+        \begin{enumerate}
+            \item For every $m<n$, $a_m=G(\abra{a_k:k<m})$;
+            \item $x=G(\abra{a_m:m<n})$.
+        \end{enumerate}
+    \end{center}
+
+    One can prove by induction that for each $n\in\N$, $F(n)$ is unique; hence $F$ is a function uniquely determined by (2). And one can further prove by induction that for each $n\in\N$ there is an $n$-sequence satisfying (1).
+\end{proof}
+
+\begin{rmk}
+    Essentially the same proof leads to the celebrated \emph{transfinite recursion} of ordinals, and the \emph{$\in$-recursion} of transitive classes.
+\end{rmk}
+
+Of course the proposition is true. Two correct proofs are given in \ref{subsec: countable subset} using the axiom of choice and the well-ordering theorem, respectively. Both proofs use some kind of recursion to bypass the second problem above.
+
+\paragraph{The second question}
+For the second question, we first make precise the notion of the Cartesian product of an arbitrary collection of sets.
+
+\begin{defn}
+    Suppose $I$ is an index set and $\mathcal A=\{A_i:i\in I\}$ is a collection of sets. The Cartesian product of $\{A_i:i\in I\}$ is defined as
+    \[\prod_{i\in I}A_i=\cbra{(f:I\to\bigcup\mathcal A):f(i)\in A_i,\forall i\in I}.\]
+\end{defn}
+
+If $I=\emptyset$ or $\emptyset\in\mathcal A$ then the Cartesian product is certainly empty. Otherwise, that $\prod_i A_i\neq\emptyset$ is equivalent to the existence of an $f:I\to\bigcup\mathcal A$ with $f(i)\in A_i$ for each $i$, called a \emph{choice function} on $\mathcal A$. This is precisely what the axiom of choice says!
+
+\begin{defn}
+    Let $I$ be an index set and $\mathcal A=\{A_i:i\in I\}$ be a collection of sets indexed by $I$. A choice function on $\mathcal A$ is a function $f:I\to\bigcup\mathcal A$ such that $f(i)\in A_i$ for each $i\in I$. Note that a set $X$ can always be indexed by itself: $X=\{x:x\in X\}$, so a choice function on $X$ is a function $f:X\to\bigcup X$ such that $f(S)\in S$ for each $S\in X$.
+\end{defn}
+
+\begin{ac}
+    Any set of nonempty sets has a choice function. Equivalently, the Cartesian product of any nonempty collection of nonempty sets is nonempty.
+\end{ac}
+
+\begin{rmk}
+    The axiom of choice (``C''), together with Zermelo-Fraenkel (``ZF'') set theory, constitutes the standard form\footnote{There are other models, some of which hair-raising. Set theorists are definitely no human.} of axiomatic set theory (ZFC), the most common foundation of mathematics. AC is independent of ZF in the sense that if ZF is consistent (this is unknown\footnote{It follows from Gödel's second incompleteness theorem that ZF cannot prove its own consistency unless it is actually inconsistent.}), then so is ZFC; and if ZF is consistent, then so is ZF with the negation of AC.
+\end{rmk}
+
+Enough of those confusing words about axiomatic set theory. Next we give two equivalent formulations of AC (Zorn's lemma and the well-ordering theorem) and prove their equivalence. After that, we present some interesting and perhaps surprising consequences. For readers' convenience, we here list the results that will be covered, and state Zorn's lemma and the well-ordering theorem.
+
+\begin{rmk}
+    If you are not at all interested in the proofs of the equivalence of the three formulations, you can totally skip them all without hindering the understanding of the interesting and perhaps surprising results about the axiom of choice.
+\end{rmk}
+
+\begin{enumerate}
+    \item (Done) The Cartesian product of any nonempty collection of nonempty sets is nonempty.
+    \item Every infinite set has a countable subset.
+    \item Every vector space has a basis.
+    \item There does not exist a perfect generalization of the length of an interval to all subsets of $\R$. (We will make that notion precise.)
+    \item Every nontrivial finitely generated group possesses maximal subgroups.
+\end{enumerate}
+
+\begin{zorn}
+    If $P$ is a nonempty partially ordered set (poset) in which every chain has an upper bound, then $P$ has a maximal element.
+\end{zorn}
+
+\begin{wo}
+    Every set can be well-ordered.
+\end{wo}
+
+
+\section{Equivalence of the Three Formulations}
+In the following text, we shall frequently treat functions and relations as their underlying sets.
+
+\subsection{AC implies Zorn's lemma}
+For the sake of contradiction, assume that $P$ is a nonempty poset such that
+\begin{enumerate}
+    \item Every chain in $P$ has an upper bound;
+    \item $P$ has no maximal elements.
+\end{enumerate}
+Let $\mathcal T$ be the set of all chains in $P$; it is a set because it is a subclass of the power set $\P(P)$. Define functions 
+\[F:\mathcal T\to\P(P)\backslash\{\emptyset\},\quad G:P\to\P(P)\backslash\{\emptyset\}\]
+by
+\[F(T)=\{x\in P:c\leq x,\forall c\in T\},\quad G(a)=\{x\in P:a\leq x, a\neq x\}.\]
+So $F(T)$ is the set of all upper bounds of the chain $T$, and $G(a)$ is the set of elements strictly greater than $a$. That $F(T)$ and $G(a)$ are nonempty follows from the two conditions above.
+
+Now consider $\{F(T):T\in\mathcal T\}$, treated as a collection of nonempty subsets of $P$ indexed by $\mathcal T$, and $\{G(a):a\in P\}$, treated as a collection of nonempty subsets of $P$ indexed by $P$. By AC, let $f$ be a choice function on $\{F(T):T\in\mathcal T\}$ and $g$ a choice function on $\{G(a):a\in P\}$, i.e.,
+\begin{itemize}
+    \item $f:\mathcal T\to P$ satisfies $(c\leq f(T),\forall c\in T)$ for each $T\in\mathcal T$;
+    \item $g:P\to P$ satisfies $x\leq g(x), x\neq g(x)$ for each $x\in P$.
+\end{itemize}
+So $f(T)$ selects an upper bound of the chain $T$, and $g(x)$ selects an element strictly greater than $x$.
+
+Define $h:\mathcal T\to P$ by $h=g\circ f$. This function assigns to each chain an upper bound outside the chain.
+
+\begin{rmk}
+    The following steps require some knowledge of ordinals and transfinite recursion. One can refer to Chapter 2 of \textit{Set Theory} by Thomas Jech.\footnote{I personally think the chapter on ordinals is very difficult, but Qinxiang Cao told me it is very easy!}
+\end{rmk}
+
+Define a sequence $\abra{a_\alpha:\alpha\in\ord}$ by transfinite recursion:
+\[a_\alpha=h(\im a\restriction_\alpha)=h(\cbra{a_\xi:\xi<\alpha})\]
+for each $\alpha\in\ord$. One should be convinced that the recursion rule can be formulated as a function on the class of all transfinite sequences. By the property of $h$ as noted above, for any ordinal $\alpha$, $a\restriction_\alpha$ is an injective transfinite sequence whose image is a chain in $P$, ensuring that the recursion is well-defined.
+
+That immediately leads to a contradiction. Let $a^{-1}:P\supseteq\im a\to\ord$ be the surjective inverse function. By the axiom schema of replacement, $\im a^{-1}=\ord$ is a set, a contradiction. That completes the proof.
+
+\subsection{Zorn's lemma implies AC}
+This proof is a typical application of Zorn's lemma. Suppose $\emptyset\not\in X\neq\emptyset$ is a nonempty collection of nonempty sets. Let $U=\bigcup X$.
+
+Let
+\[P=\cbra{(f:X'\to U):X'\subseteq X, f(S)\in S,\forall S\in X'}\]
+be a poset under set inclusion, i.e., function extension. Because we can easily construct an $f$ by taking $X'$ to be a singleton, $P$ is nonempty.
+
+Let
+\[T=\{(f_i:X_i\to U):i\in I\}\]
+be a chain in $P$. The following steps lead to that $\bigcup T$ is an upper bound of $T$ in $P$. The proof of each step is nothing more than verifying the definitions and hence is omitted.
+\begin{enumerate}
+    \item $\bigcup T=\bigcup_{i\in I}f_i:\bra{\bigcup_{i\in I}X_i}\to U$.
+    \item $\bigcup T\in P$.
+    \item $\bigcup T$ is an upper bound of $T$.
+\end{enumerate}
+
+By Zorn's lemma, $P$ has a maximal element $\overline f:\overline X\to U$. If $\overline X=X$ then $\overline f$ is a choice function we seek. Otherwise take $S\in X\backslash\overline X$ and $x\in S$, and $(\overline f\cup\{(S,x)\})\in P$ contradicts the maximality of $\overline f$. The proof is completed.
+
+\subsection{Zorn's lemma implies the well-ordering theorem}
+This proof is essentially the same as the proof that Zorn's lemma implies AC. Suppose $X$ is a nonempty set (if it is empty the desired result holds trivially).
+
+Let
+\[P=\cbra{(X',\leq):X'\subseteq X\text{ is well-ordered by}\leq}\]
+be partially ordered by
+\[(X',\leq_{X'})\leq(X'',\leq_{X''})\iff X'\subseteq X'',(\leq_{X'})\subseteq(\leq_{X''}).\]
+For a chain $T$ in $P$, we can similarly show that $\bigcup T$ is an upper bound of $T$ in $P$. By Zorn's lemma, $P$ has a maximal element which is necessarily $X$ with a well-ordering, completing the proof.
+
+\subsection{AC implies the well-ordering theorem}
+Suppose $X$ is a nonempty set (if it is empty the desired result holds trivially). By AC, let $f$ be a choice function on $\P(X)\backslash\{\emptyset\}$.
+
+Define a sequence $a$ by transfinite recursion:
+\[a_\alpha=f(P\backslash\im\abra{a_\xi:\xi<\alpha})=f(P\backslash\{a_\xi:\xi<\alpha\}).\]
+If $\{a_\alpha:\alpha<\theta\}=P$ for some $\theta\in\ord$, then the process terminates here and we obtain a $\theta$-sequence $\abra{a_\alpha:\alpha<\theta}$. This is actually always the case. If not, $a:\ord\to P$ is injective (see the next paragraph). Apply the axiom schema of replacement to $a^{-1}:P\supseteq\im a\to\ord$ leads to that $\ord$ is a set, which is not true.
+
+Because $f$ is a choice function, $a$ is injective and hence a bijection between an ordinal $\theta$ and $P$. That gives the desired well-ordering: for $a_\alpha,a_\beta\in P$, $a_\alpha\leq a_\beta$ if and only if $\alpha\leq\beta$. That this is a well-ordering follows from that every ordinal, including $\theta$, is well-ordered.
+
+\subsection{The well-ordering theorem implies AC}
+Suppose $\emptyset\not\in X\neq\emptyset$ is a nonempty collection of nonempty sets. By the well-ordering theorem, let $\bigcup X$ be well-ordered by $\leq$.
+
+The idea is simple and straightforward. AC is needed only when no explicit rule of selection can be given (see the first quote at the beginning of the article and the associated footnote). The well-order gives us a canonical way to make the selection, so we do not need AC.
+
+We make the above notion precise by explicitly constructing a choice function. Let $\phi(x,y,p)$ be the first-order formula
+\[\phi(S,s,X)=(S\in X\land s\in S\land\forall x(x\in S\to s\leq x)).\]
+We wrote $\phi(x,y,p)$ above to emphasize that $\phi$ is meant to be a function (with parameter $p$). It can be verified that $\phi$ is the function that maps each set in $X$ to the least element of it, a choice function as desired.
+
+If you prefer something more formal, we can make $\phi$ a function on the universe $V$ and restrict this class function to obtain a set function (a set) \emph{in} the set $X\times\bigcup X$.
+\[\phi(S,s,X)=((S\in X\land s\in S\land\forall x(x\in S\to s\leq x))\lor(S\not\in X\land s=\emptyset)).\]
+
+\begin{rmk}
+    We cannot give a well-order to every set in $X$ because that requires many choices (one choice of well-order for each set in $X$), which per se requires the axiom of choice. Our approach requires only one choice, namely choosing a well-order on $\bigcup X$.
+\end{rmk}
+
+\begin{rmk}
+    The reader might become overly suspicious and doubt if one choice (or two, or ten) is allowed without AC. It is legitimate, by mathematical logic. One might refer to Chapter IV of \textit{Mathematical Logic} by Heinz-Dieter Ebbinghaus et al. Sequent calculus contains a sequent rule that allows one to make one choice:
+    \[\frac{\Gamma\quad\phi\frac yx\quad\psi}{\Gamma\quad\exists x\phi\quad\psi}\quad\text{if $y$ is not free in }\Gamma\,\exists x\phi\,\psi.\]
+    Or in Qinxiang Cao's notation, $\phi[x\mapsto t]\vdash\exists x\phi$ (from his lecture note on April 11, 2025).
+\end{rmk}
+
+
+\section{Consequences of the Axiom of Choice}
+After all those proofs (they actually can be skipped without hindering the understanding of the results below), we arrive at some interesting and perhaps surprising consequences of the axiom of choice.
+
+\subsection{Every infinite set has a countable subset}\label{subsec: countable subset}
+One problem with the naive proof in the introduction is that inductions of natural numbers can never truly reach the infinity. Transfinite recursion comes to the rescue.
+
+\paragraph{Proof by AC}
+Let $X$ be an infinite set. By AC, let $f$ be a choice function on $\P(X)\backslash\{\emptyset\}$. Define an $\omega$-sequence $\abra{a_n:n<\omega}$ by transfinite recursion:
+\[a_n=f(X\backslash\im a\restriction_n)=f(X\backslash\{a_0,\dots,a_{n-1}\}).\]
+Here $\omega$ is the least nonzero limit ordinal, i.e., the set $\N$ of natural numbers in the usual sense, and $n<\omega$ simply means $n\in\N$. We use this notation to emphasize that we are performing a transfinite recursion (with no limit steps).
+
+That solves the problem of infinity and well-defines an injective (infinite) sequence in $X$, proving the desired result.
+
+\paragraph{Proof by the well-ordering theorem}
+The $\omega$-sequence can alternatively be constructed with the well-ordering theorem. Let $X$ be well-ordered by $\leq$. Define $G:X\to X$ by the first-order formula
+\[\phi(x,y,X)=(x\leq y\land x\neq y\land\forall z((x\leq z\land x\neq z)\to y\leq z)).\]
+So $G(x)$ is the least element strictly greater than $x$, whose existence is guaranteed by the well-ordering.
+
+Define an $\omega$-sequence $\abra{b_n:n<\omega}$ by transfinite recursion: $b_n=G(b_{n-1})$.
+
+\subsection{Every vector space has a basis}
+In linear algebra courses we usually deal only with finite-dimensional vector spaces. Let $V$ be a vector space (of arbitrary dimension) over a field $K$.
+
+\begin{rmk}
+    One might search the internet for the definition of a vector space over a field. But in this article the field can be simply taken to be $\R$.
+\end{rmk}
+
+\begin{itemize}
+    \item A linear combination of a (possibly infinite) subset $A\subseteq V$ is a \emph{finite} sum of the form $c_1v_1+\cdots+c_nv_n$, where $c_i\in K,v_i\in A$ for each $i$.
+    \item A subset $A\subseteq V$ is said to be linearly independent if there do not exist $v,v_1,\dots,v_n\in A$ such that $v$ is a linear combination of $v_1,\dots,v_n$.
+    \item A subset $A\subseteq V$ is said to be spanning if every vector in $V$ is a linear combination of $A$.
+    \item A linearly independent subset $A\subseteq V$ is said to be a basis of $V$ if it spans $V$.
+\end{itemize}
+In short, a linear combination has to be finite. This is fairly reasonable: we hope $\{1,x,x^2,\dots\}$ to be a basis of the vector space $\R[x]$ of polynomials in $x$ with real coefficients, and we do not hope power series to mess things up.
+
+Notice that a basis is a linearly independent subset that is maximal under set inclusion. That motivates the use of Zorn's lemma. Let $P$ be the set of all linearly independent subsets of $V$, partially ordered by set inclusion. If $V=\{0\}$ then the result is trivial; hence assume $V$ is nontrivial. Taking $A$ to be the singleton of any nonzero vector leads to $P\neq\emptyset$.
+
+Let $T$ be a chain in $P$. Straightforward verifications of definitions lead to that $\bigcup T$ is an upper bound of $T$ in $P$. By Zorn's lemma, $P$ has a maximal element $B$. It has to span $V$, because otherwise let $v\in V$ be a vector not spanned by $B$, and $B\cup\{v\}\in P$ (as you can verify) contradicts the maximality of $B$. Now $B$ is a linearly independent subset that spans $V$, i.e., a basis of $V$.
+
+\subsection{There does not exist a perfect generalization of the length of an interval to all subsets of $\R$}
+The Riemann integral is not good enough:
+\begin{itemize}
+    \item It does not handle functions with too many discontinuities;
+    \item It does not handle unbounded functions;
+    \item It interacts badly with limits (in terms of interchanging limits and integrals).
+\end{itemize}
+For a better theory of integration, a notion of size (a \emph{measure}) is needed for more general subsets of $\R$ than intervals.
+
+\begin{rmk}
+    Do not ask any further questions regarding the sentence above, unless you would like to run into the hell of measure theory, real analysis and functional analysis.
+\end{rmk}
+
+No worry, we do not talk about $\sigma$-algebras and measures here. We only prove the following disappointing fact that there does not exist a perfect notion of size that satisfies all desired properties.
+
+\begin{thm}[Vitali]
+    There does not exist a function $\mu:\P(\R)\to[0,\infty]$ satisfying all the following properties.
+    \begin{enumerate}
+        \item For every open interval $I=(a,b)$, $\mu(I)=\ell(I)$ where $\ell(I)=b-a$ is the length of the interval. Here $a<b$ and $a,b\in\R\cup\{-\infty,\infty\}$.
+        \item (Countable additivity) For any pairwise disjoint sequence $\{A_k\}_{k\in\Z^+}\subseteq\P(\R)$,
+        \[\mu\bra{\bigcup_{k=1}^\infty A_k}=\sum_{k=1}^\infty\mu(A_k).\]
+        \item (Translation invariance) For every $A\subseteq\R$ and $t\in\R$, $\mu(t+A)=\mu(A)$, where $t+A=\{t+a:a\in A\}$.
+    \end{enumerate}
+\end{thm}
+
+All conditions above seem natural: our notion of size should be a generalization of the length of intervals; countable additivity is needed in order to take limits (the core of calculus); a natural notion of size should be invariant under translation. However, we now show that such a perfect function does not exist, assuming the axiom of choice.
+
+For the sake of contradiction, assume such a $\mu$ does exist. We first derive some handy properties of $\mu$.
+\begin{enumerate}
+    \item $\mu(\emptyset)=0$.
+    \item If $A\subseteq B\subseteq\R$, then $\mu(A)\leq\mu(B)$.
+    \item $\mu([a,b])=b-a$ for $a,b\in\R\cup\{-\infty,\infty\}$.
+\end{enumerate}
+To prove (1), take $A_1=(0,1)$, $A_2=A_3=\cdots=\emptyset$ and apply countable additivity. For (2), take $A_1=A$, $A_2=B\backslash A$, $A_3=A_4=\cdots=\emptyset$ and apply countable additivity. For (3), apply (2) to $(a,b)\subseteq[a,b]\subseteq(a-\epsilon,b+\epsilon)$.
+
+With all preparations made, we prove the theorem. Define an equivalence relation $\sim$ on $[-1,1]$ by $a\sim b$ if $a-b\in\Q$. Let $P=\{[a]:a\in[-1,1]\}$ be the set of equivalence classes under $\sim$. By AC, let $f$ be a choice function on $P$ and let $V=\im f$. So $f$ assigns to each equivalence class a representative of it, and $V$ contains a unique representative of every equivalence class.
+
+Let $\{q_1,q_2,\dots\}$ be a pairwise distinct enumeration of all rationals in $[-2,2]$, or more formally, an injective sequence with image $[-2,2]\cap\Q$. We shall be working with $\bigcup_{k=1}^\infty(q_k+V)$.
+
+First note that the $(q_k+V)$'s are pairwise disjoint. Assume that $(q_i+V)\cap(q_j+V)\neq\emptyset$, i.e., there exist $a,b\in[-1,1]$ with $a\not\sim b$ (by definition of $V$) such that $q_i+a=q_j+b$. But $q_i,q_j$ are rational, which implies that $a-b\in\Q$, a contradiction.
+
+Observe that
+\[[-1,1]\subseteq\bigcup_{k=1}^\infty(q_k+V)\subseteq[-3,3].\]
+The second inclusion is obvious. We show the first inclusion. For $x\in[-1,1]$, let $a$ be the unique element of $V\cap[x]$. Then $x=(x-a)+a$ where $x-a\in[-2,2]\cap\Q$ and $a\in V$. Hence $x\in(x-a)+V$.
+
+The formula above implies that
+\[2\leq\mu\bra{\bigcup_{k=1}^\infty(q_k+V)}=\sum_{k=1}^\infty\mu(q_k+V)=\sum_{k=1}^\infty\mu(V)\leq6,\]
+where the inequalities follow from property (2) and (3), and the equalities follow from countable additivity and translation invariance. But it is not possible for $\mu(V)\in[0,\infty]$ to satisfy $2\leq\sum_{k=1}^\infty\mu(V)\leq6$. We reach a contradiction and the proof is completed.
+
+\begin{rmk}
+    A small minority of mathematicians objects to the use of the axiom of choice. Nonetheless, the proof above warns one away from trying to construct a notion of size that satisfies all desired properties, because any such construction will necessarily contradict the axiom of choice, which is consistent with ZF.
+\end{rmk}
+
+\begin{rmk}
+    A similar proof (after deriving some properties of outer measure) leads to that the outer measure on $\R$ is not additive.
+\end{rmk}
+
+\begin{rmk}
+    This disappointing fact leads to the definitions of $\sigma$-algebras and measurable spaces, measures, measurable functions, integration with respect to a measure...
+\end{rmk}
+
+\subsection{Every nontrivial finitely generated group possesses maximal subgroups}
+This is a purely group-theretical question so no motivations will be given.
+
+We first consider the (very easy) finite case. Let $G$ be a finite group of order $n>1$. Assume for the sake of contradiction that $G$ has no maximal subgroups. We start from the trivial subgroup $1\leq G$. $1$ is not maximal; hence there exists some subgroup $H_1$ such that $1<H_1<G$. $H_1$ is not maximal; hence we have some $1<H_1<H_2<G$. Repeat this process $n$ times ($n$ is finite) and we have $1<H_1<\cdots<H_n<G$. But $1<H_1<\cdots<H_n$ implies that $|H_n|>n=|G|$, a contradiction. The proof is completed.
+
+For the infinite case such technique no longer works. We need that $G$ is finitely generated. Let $G=\abra{g_1,\dots,g_n}$ be a finitely generated group.
+
+Let $P=\{H:H<G\}$ be a poset under $\leq$ (set inclusion). For a chain $T=\{H_i:i\in I\}$ in $P$, we show that $\bigcup T$ is an upper bound of $T$ in $P$ following the steps below.
+\begin{itemize}
+    \item Show that $\bigcup T\leq G$.
+    
+    $\bigcup T$ is nonempty. For $x,y\in\bigcup T$, suppose $x\in H_i$ and $y\in H_j$. Because $T$ is a chain, $H_i\leq H_j$ or $H_j\leq H_i$. Without loss of generality, suppose $H_i\leq H_j$. Then $x,y\in H_j$, which implies that $xy^{-1}\in H_j\subseteq\bigcup T$.
+
+    \item Show that $\bigcup T\neq G$.
+    
+    Assume that $\bigcup T=G$. Then $g_k\in H_{i_k}$ for each $1\leq k\leq n$. Because $T$ is a chain, $H_{i_1}\leq H_{i_2}$ or $H_{i_2}\leq H_{i_1}$. Then $g_1,g_2\in H_{i_1}$ (W.L.O.G suppose this way) or $g_1,g_2\in H_{i_2}$. Now $g_1,g_2\in H_{i_1}$ and $g_3\in H_{i_3}$. Because $T$ is linearly ordered, $g_1,g_2,g_3$ all belong to one subgroup. Repeat this process $n$ times ($n$ is finite) and we have $g_1,\dots,g_n\in H_{i_j}$ for some $i_j\in I$. Then $H_{i_j}=G$, a contradiction.
+    
+    \item Show that $\bigcup T$ is an upper bound of $T$. (Trivial.)
+\end{itemize}
+
+By Zorn's lemma, $P$ has a maximal element, namely a maximal subgroup.
+
+
+\newpage
+\section*{Afterword}
+\addcontentsline{toc}{section}{Afterword}
+It is quite a surprise that I wrote so many words in a single day. In fact, I started writing this blog at midnight on November 1, 2025, and finished the main part by 6 p.m. the same day, writing more than 3,000 words. Several revisions and expansions were made afterwards. This is the LaTeX version of \href{https://melontree68.github.io/posts/axiom-of-choice/}{\color{blue}my blog post} of the same title. The content is identical, but the LaTeX version has a more formal typesetting, which I personally prefer.
+
+I have always found set theory quite an interesting subject (as has one of my good friends). Set theory and manifold theory are probably the two branches of mathematics I find the most appealing. However, both subjects are very abstract and obscure (at least to me), and it takes an unacceptably large amount of time (for a sophomore in AI) to study even the basics of them. Due to the absence of a textbook suitable for my level, and perhaps also to my lack of mathematical maturity, I sadly gave up studying set theory half a year ago. Now I am trying to read \textit{An Introduction to Manifolds} by Loring W. Tu, a first-year graduate-level textbook on manifold theory that assumes only one year of real analysis and a semester of abstract algebra. It takes me a great amount of time --- often spending half a day for less than 10 pages. I have no idea if this is a wrong choice, but wish me good luck.
+
+
+\end{document}

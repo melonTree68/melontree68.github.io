@@ -12,6 +12,9 @@ description: What is the mysterious axiom of choice? Why the hell do we need it 
 math: true
 date: 2025-11-01 18:47 +0800
 ---
+The LaTeX version of this blog post is available [here](https://github.com/melonTree68/axiom-of-choice-blog). Or you can simply download the [.tex](/assets/img/posts/axiom-of-choice/axiom-of-choice-blog.tex) and [.pdf](/assets/img/posts/axiom-of-choice/axiom-of-choice-blog.pdf) files from here. The content is the same, but the LaTeX version has a more formal typesetting, which I personally prefer (quite much).
+
+
 > To choose one sock from each of infinitely many pairs of socks requires the Axiom of Choice, but for shoes the Axiom is not needed.[^Russell]
 > 
 > --- Bertrand Russell
