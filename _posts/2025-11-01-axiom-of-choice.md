@@ -14,15 +14,15 @@ date: 2025-11-01 18:47 +0800
 ---
 > To choose one sock from each of infinitely many pairs of socks requires the Axiom of Choice, but for shoes the Axiom is not needed.[^Russell]
 > 
-> ---Bertrand Russell
+> --- Bertrand Russell
 
 > The Axiom of Choice is obviously true; the well-ordering principle is obviously false; and who can tell about Zorn's lemma?[^Bona]
 >
-> ---Jerry Bona
+> --- Jerry Bona
 
 > Thought is subversive and revolutionary, destructive and terrible; thought is merciless to privilege, established institutions, and comfortable habit. Thought looks into the pit of hell and is not afraid. Thought is great and swift and free, the light of the world, and the chief glory of man.
 >
-> ---Bertrand Russell
+> --- Bertrand Russell
 
 
 ## Introduction
@@ -170,7 +170,6 @@ be a chain in $P$. The following steps lead to that $\bigcup T$ is an upper boun
 3. $\bigcup T$ is an upper bound of $T$.
 
 By Zorn's lemma, $P$ has a maximal element $\tilde f:\tilde X\to U$. If $\tilde X=X$ then $\tilde f$ is a choice function we seek. Otherwise take $S\in X\backslash\tilde X$ and $x\in S$, and $\bra{\tilde f\cup\\{(S,x)\\}}\in P$ contradicts the maximality of $\tilde f$. The proof is completed.
-
 
 ### Zorn's lemma implies the well-ordering theorem
 
