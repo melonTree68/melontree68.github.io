@@ -354,7 +354,7 @@ For the sake of contradiction, assume such a $\mu$ does exist. We first derive s
 
 To prove (1), take $A_1=(0,1)$, $A_2=A_3=\cdots=\emptyset$ and apply countable additivity. For (2), take $A_1=A$, $A_2=B\backslash A$, $A_3=A_4=\cdots=\emptyset$ and apply countable additivity. For (3), apply (2) to $(a,b)\subseteq[a,b]\subseteq(a-\epsilon,b+\epsilon)$.
 
-With all preparations made, we prove the theorem. Define an equivalence relation $\sim$ on $A=[-1,1]\cap\QQ$ by $a\sim b$ if $a-b\in\QQ$. Let $P=\\{[a]:a\in A\\}$ be the set of equivalence classes under $\sim$. By AC, let $f$ be a choice function on $P$ and let $V=\im f$. So $f$ assigns to each equivalence class a representative of it, and $V$ contains a unique representative of every equivalence class.
+With all preparations made, we prove the theorem. Define an equivalence relation $\sim$ on $[-1,1]$ by $a\sim b$ if $a-b\in\QQ$. Let $P=\\{[a]:a\in[-1,1]\\}$ be the set of equivalence classes under $\sim$. By AC, let $f$ be a choice function on $P$ and let $V=\im f$. So $f$ assigns to each equivalence class a representative of it, and $V$ contains a unique representative of every equivalence class.
 
 Let $\\{q_1,q_2,\dots\\}$ be a pairwise distinct enumeration of all rationals in $[-2,2]$, or more formally, an injective sequence with image $[-2,2]\cap\QQ$. We shall be working with $\bigcup_{k=1}^\infty(q_k+V)$.
 
