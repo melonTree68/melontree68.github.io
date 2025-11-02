@@ -49,7 +49,7 @@ This is a question for which I have long been seeking a satisfying answer. Besid
 The explicit formula for determinants has been given above. Let's recall the derivation of the theorems listed above. It can be shown by definition that
 - multiplying a row by a scalar multiplies the determinant by that scalar;
 - permuting two rows negates the determinant; (To prove it, analyze the inversion number with brute force.)
-- $\det\begin{bmatrix}x_1&\dots&(x_i+x_i')&\dots&x_n\end{bmatrix}=\det\begin{bmatrix}x_1&\dots&x_i&\dots&x_n\end{bmatrix}+\det\begin{bmatrix}x_1&\dots&x_i'&\dots&x_n\end{bmatrix}.$
+- $$\det\begin{bmatrix}x_1&\dots&(x_i+x_i')&\dots&x_n\end{bmatrix}=\det\begin{bmatrix}x_1&\dots&x_i&\dots&x_n\end{bmatrix}+\det\begin{bmatrix}x_1&\dots&x_i'&\dots&x_n\end{bmatrix}.$$
 
 From the properties above, we obtain by Gaussian elimination that the determinant is the product of pivots. Hence the second theorem mentioned above holds, and the third follows from the second. As for the first theorem, the proof is more complicated than insightful, at least to me.[^fn-multiplicative-det] We will see a nicer proof later.
 
@@ -350,13 +350,13 @@ The first is to give a clean, basis-free definition of determinants, and a satis
 
 The second goal is to select several properties such that the only mathematical object $\delta$ satisfying the properties is the determinant. We arrive at two sets of properties.
 1. Multilinear algebra-based, $\delta:(\F^n)^n\to\F$.
-   - $\delta(x_1,\dots,x_i+x_i',\dots,x_n)=\delta(x_1,\dots,x_i,\dots,x_n)+\delta(x_1,\dots,x_i',\dots,x_n)$;
-   - $\delta(x_1,\dots,cx_i,\dots,x_n)=c\delta(x_1,\dots,x_i,\dots,x_n)$;
-   - $\delta(x_1,\dots,x_n)=0$ whenever $x_i=x_j$ for some $i\neq j$.
-   - $\delta(e_1,\dots,e_n)=1$.
+   - $$\delta(x_1,\dots,x_i+x_i',\dots,x_n)=\delta(x_1,\dots,x_i,\dots,x_n)+\delta(x_1,\dots,x_i',\dots,x_n);$$
+   - $$\delta(x_1,\dots,cx_i,\dots,x_n)=c\delta(x_1,\dots,x_i,\dots,x_n);$$
+   - $$\delta(x_1,\dots,x_n)=0\text{ whenever }x_i=x_j\text{ for some }i\neq j;$$
+   - $$\delta(e_1,\dots,e_n)=1.$$
 2. Axiomatic, $\delta:\F^{n,n}\to\F$.
-   - $\delta(AB)=\delta(A)\delta(B)$;
-   - $\delta(\text{diag}(\lambda_1,\dots,\lambda_n))=\lambda_1\cdots\lambda_n$.
+   - $$\delta(AB)=\delta(A)\delta(B);$$
+   - $$\delta(\text{diag}(\lambda_1,\dots,\lambda_n))=\lambda_1\cdots\lambda_n.$$
 
 
 ## Footnotes
