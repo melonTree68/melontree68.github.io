@@ -403,7 +403,7 @@ $\bigcup T$ is nonempty. For $x,y\in\bigcup T$, suppose $x\in H_i$ and $y\in H_j
 
 - Show that $\bigcup T\neq G$.
 
-Assume that $\bigcup T\in G$. Then $g_k\in H_{i_k}$ for each $1\leq k\leq n$. Because $T$ is a chain, $H_{i_1}\leq H_{i_2}$ or $H_{i_2}\leq H_{i_1}$. Then $g_1,g_2\in H_{i_1}$ (W.L.O.G suppose this way) or $g_1,g_2\in H_{i_2}$. Now $g_1,g_2\in H_{i_1}$ and $g_3\in H_{i_3}$. Because $T$ is linearly ordered, $g_1,g_2,g_3$ all belong to one subgroup. Repeat this process $n$ times ($n$ is finite) and we have $g_1,\dots,g_n\in H_{i_j}$ for some $i_j\in I$. Then $H_{i_j}=G$, a contradiction.
+Assume that $\bigcup T=G$. Then $g_k\in H_{i_k}$ for each $1\leq k\leq n$. Because $T$ is a chain, $H_{i_1}\leq H_{i_2}$ or $H_{i_2}\leq H_{i_1}$. Then $g_1,g_2\in H_{i_1}$ (W.L.O.G suppose this way) or $g_1,g_2\in H_{i_2}$. Now $g_1,g_2\in H_{i_1}$ and $g_3\in H_{i_3}$. Because $T$ is linearly ordered, $g_1,g_2,g_3$ all belong to one subgroup. Repeat this process $n$ times ($n$ is finite) and we have $g_1,\dots,g_n\in H_{i_j}$ for some $i_j\in I$. Then $H_{i_j}=G$, a contradiction.
 
 - Show that $\bigcup T$ is an upper bound of $T$. (Trivial.)
 
