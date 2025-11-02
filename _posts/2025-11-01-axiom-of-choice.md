@@ -260,9 +260,11 @@ After all those proofs (they actually can be skipped without hindering the under
 
 ### Every infinite set has a countable subset
 
-The problem with the naive proof in the introduction is that inductions (of natural numbers) can never truly reach the infinity. Transfinite recursion comes to the rescue.
+One problem with the naive proof in the introduction is that inductions of natural numbers can never truly reach the infinity. Transfinite recursion comes to the rescue.
 
-Let $X$ be an infinite set. By AC, let $f$ be a choice function on $\P(X)\backslash\\{\emptyset\\}$. Define an $\omega$-sequence $\abra{a_n:n<\omega}$ by transfinite recursion:
+#### Proof by AC
+
+Let $X$ be an infinite set. By AC, let $f$ be a choice function on $\P(X)\backslash\{\emptyset\}$. Define an $\omega$-sequence $\abra{a_n:n<\omega}$ by transfinite recursion:
 
 $$
 a_n=f(X\backslash\im a\restriction_n)=f(X\backslash\{a_0,\dots,a_{n-1}\}).
@@ -271,6 +273,18 @@ $$
 Here $\omega$ is the least nonzero limit ordinal, i.e., the set $\NN$ of natural numbers in the usual sense, and $n<\omega$ simply means $n\in\NN$. We use this notation to emphasize that we are performing a transfinite recursion (with no limit steps).
 
 That solves the problem of infinity and well-defines an injective (infinite) sequence in $X$, proving the desired result.
+
+#### Proof by the well-ordering theorem
+
+The $\omega$-sequence can alternatively be constructed with the well-ordering theorem. Let $X$ be well-ordered by $\leq$. Define $G:X\to X$ by the first-order formula
+
+$$
+\phi(x,y,X)=(x\leq y\land x\neq y\land\forall z((x\leq z\land x\neq z)\to y\leq z)).
+$$
+
+So $G(x)$ is the least element strictly greater than $x$, whose existence is guaranteed by the well-ordering.
+
+Define an $\omega$-sequence $\abra{b_n:n<\omega}$ by transfinite recursion: $b_n=G(b_{n-1})$.
 
 ### Every vector space has a basis
 
