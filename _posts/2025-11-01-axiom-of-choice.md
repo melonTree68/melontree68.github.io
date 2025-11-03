@@ -49,7 +49,7 @@ Given a function $G$ on the class of all finite sequences, there exists a unique
 {% include thms/theorem.html title="Recursion of Natural Numbers" content=thm_content %}
 
 {% capture pf_content %}
-We define $F$ by a first-order formula. We only describe it in natural language and one should be convinced that it can be converted to a nice first-order formula $\phi(n,y,G)$.
+We define $F$ by a first-order formula. We only describe it in natural language and one should be convinced that it can be converted to a nice first-order formula $\phi(n,x,G)$.
 
 $F(n)=x\iff$ there is an $n$-sequence $\abra{a_m:m<n}$ such that:
 1. For every $m<n$, $a_m=G(\abra{a_k:k<m})$;
