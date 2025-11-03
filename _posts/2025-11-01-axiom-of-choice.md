@@ -262,7 +262,7 @@ $$
 > \frac{\Gamma\quad\phi\frac yx\quad\psi}{\Gamma\quad\exists x\phi\quad\psi}\quad\text{if $y$ is not free in }\Gamma\,\exists x\phi\,\psi.
 > $$
 >
-> Or in Qinxiang Cao's notation, $\phi[x\mapsto t]\vdash\exists x\phi$ (from his lecture note on April 11, 2025).
+> Or in Qinxiang Cao's notation: if $x_0$ does not freely occur in $\Phi$ or $\chi$, and $\Phi,\psi\vdash\chi$, then $\Phi,\exists x_0\psi\vdash\chi$ (from his lecture note on April 2, 2025).
 {: .prompt-info}
 
 
