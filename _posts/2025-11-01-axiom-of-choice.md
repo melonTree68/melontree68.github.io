@@ -6,6 +6,7 @@ categories:
 - Mathematics
 tags:
 - mathematics
+- set theory
 description: What is the mysterious axiom of choice? Why the hell do we need it even
   just to show that every infinite set has a countable subset? Why does every vector
   space have a basis? ...
