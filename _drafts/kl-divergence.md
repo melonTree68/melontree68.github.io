@@ -7,6 +7,6 @@ categories:
 tags:
 - machine learning
 - information theory
-description: Why do we use the Kullback-Leibler (KL) divergence as a distance metric between probability distributions? Why do we use the cross-entropy as the loss function in supervised machine learning?
+description: Why do we use the Kullback-Leibler (KL) divergence as a measure of distance between probability distributions? Why do we use the cross-entropy as the loss function in supervised machine learning?
 math: true
 ---
