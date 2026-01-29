@@ -27,6 +27,7 @@ MathJax = {
             inp: ["\\left\\langle#1,#2\\right\\rangle", 2],
             abs: ["\\left|#1\\right|", 1],
             rest: ["\\left.#1\\right|_{#2}", 2],
+            KL: ["D_{\\text{KL}}(#1\\parallel#2)", 2],
 
             R: "\\mathbf{R}",
             N: "\\mathbf{N}",
@@ -54,8 +55,9 @@ MathJax = {
             M: "\\mathcal{M}",
             P: "\\mathcal{P}",
             B: "\\mathcal{B}",
-            E: "\\mathcal{E}",
+            E: "\\mathbb{E}",
             T: "\\mathrm{T}",
+            X: "\\mathcal{X}",
 
             spn: "\\operatorname{span}",
             im: "\\operatorname{im}",

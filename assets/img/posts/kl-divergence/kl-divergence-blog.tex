@@ -1,0 +1,249 @@
+% xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{enumerate}
+\usepackage[inline]{enumitem}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage{titling}
+\usepackage{hyperref}
+
+
+% ---------- Preamble ----------
+\pagestyle{fancyplain} % Make all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\geometry{
+    textwidth=160mm,
+    top=25mm,
+    bottom=25mm,
+}
+\setlist[enumerate]{
+    label=\textnormal{(\arabic*)},
+    topsep=0.5em,
+    itemsep=0em,
+}
+\setlist[itemize]{
+    topsep=0.5em,
+    itemsep=0em,
+}
+
+
+% ---------- Theorem environments ----------
+\theoremstyle{plain} % default
+\newtheorem{thm}{Theorem}
+\newtheorem{thms}[thm]{Theorems}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{props}[thm]{Propositions}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{rmks}{Remarks}
+
+
+% ---------- Symbol Macros ----------
+\newcommand{\bra}[1]{\mathopen{}\left(#1\right)}
+\newcommand{\sbra}[1]{\mathopen{}\left[#1\right]}
+\newcommand{\cbra}[1]{\mathopen{}\left\{#1\right\}}
+\newcommand{\abra}[1]{\mathopen{}\left\langle#1\right\rangle}
+\newcommand{\norm}[1]{\mathopen{}\left\lVert#1\right\rVert}
+\newcommand{\inp}[2]{\mathopen{}\left\langle#1,#2\right\rangle}
+\newcommand{\abs}[1]{\mathopen{}\left|#1\right|}
+\newcommand{\rest}[2]{\mathopen{}\left.#1\right|_{#2}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+% \newcommand{\R}{\mathbf{R}}
+% \newcommand{\N}{\mathbf{N}}
+% \newcommand{\Z}{\mathbf{Z}}
+% \newcommand{\C}{\mathbf{C}}
+% \newcommand{\Q}{\mathbf{Q}}
+
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\dx}{\mathrm{d}x}
+% \renewcommand{\epsilon}{\varepsilon}
+% \renewcommand{\phi}{\varphi}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathcal{P}}
+\renewcommand{\L}{\mathcal{L}}
+\newcommand{\ord}{\mathrm{Ord}}
+
+\newcommand{\T}{\mathrm{T}}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\I}{\mathrm{I}}
+\renewcommand{\H}{\mathrm{H}}
+\newcommand{\KL}[2]{D_{\text{KL}}(#1\parallel#2)}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+
+
+% ---------- Title Section ----------
+\title{
+    Information Theory Behind the Kullback-Leibler Divergence
+}
+\author{Zhijie Chen}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+Why do we use the Kullback-Leibler (KL) divergence as a measure of distance between probability distributions? Why do we use the cross-entropy loss function in supervised machine learning?
+
+\tableofcontents
+\newpage
+
+
+\section{Introduction}
+\label{sec: intro}
+In supervised learning, we typically assume that the training set $\D=\{(x^{(i)},y^{(i)})\}_{i=1}^N$ is sampled from an underlying true distribution $p$, and our goal is to construct a model $q_\theta$, parameterized by $\theta$, that approximates this distribution. To evaluate our model, we need a measure of distance, or dissimilarity, between two probability distributions. A standard choice is the Kullback-Leibler (KL) divergence
+\[\KL p q=\E_{x\sim p}\sbra{\log\frac{p(x)}{q(x)}}=\sum_{x\in\X}p(x)\log\frac{p(x)}{q(x)}\]
+(or $\int p(x)\log\frac{p(x)}{q(x)}\dx$ for continuous random variables). In practice, we often use the cross-entropy loss\footnote{The cross-entropy loss has the same form as the maximum likelihood estimation objective.}
+\[J(\theta)=-\frac1N\sum_{i=1}^{N}\log q_\theta(x^{(i)},y^{(i)}).\]
+
+But why do they work? The definitions above are not quite self-explanatory --- it is not immediately clear from their forms why the KL divergence measures the distance between two distributions, or why minimizing the cross-entropy loss leads to better model performance. To answer this, we begin with the notion of surprisal.
+
+
+\section{Surprisal}
+Consider a random variable $X$ with a discrete probability distribution $p(x)$. If we observe an outcome $x$, how surprised are we? Intuitively, the higher the probability of an event, the less surprised we are, and correspondingly the less information we gain from its occurrence. Conversely, events with low probability are more surprising and provide more information. This motivates the definition of information content, or self-information, or surprisal, of an event.
+
+\begin{defn}
+    The information content, self-information, or surprisal of an event $x$ is defined as
+    \[\I(x)=-\log p(x).\]
+    Here the choice of base $b$ is somewhat arbitrary. Different choices of $b$ correspond to different units of information: bit for $b=2$, nat (for natural) for $b=e$, and Hart (for hartley) for $b=10$.
+\end{defn}
+
+In this article, we shall primarily be treating the concept above as surprisal, instead of the less intuitive notion of information content. The latter notion is also important and will be treated in \ref{sec: information}.
+
+The surprisal has some intuitive and desirable properties.
+\begin{itemize}
+    \item $\I(x)=0$ for $x$ with $p(x)=1$. We are completely unsurprised at events with probability $1$. Such events carry no information.
+    \item $\I(x)$ is a monotonically decreasing function of $p(x)$.
+    \item For independent events $x$ and $y$, $\I(x,y)=\I(x)\I(y)$. The information content of two independent events is the sum of their individual self-information; the surprisal of two independent events is the sum of their individual surprisals.
+\end{itemize}
+
+
+\section{Entropy and Cross-Entropy}
+\subsection{Entropy}
+\begin{defn}
+    The (Shannon) entropy of a random variable $X$, denoted $\H(p)$, is defined as the average surprisal we experience when drawing samples from it.
+    \[\H(p)=\E_{x\sim p}[\I(x)]=-\sum_{x\in\X}p(x)\log p(x)\]
+    (or $-\int p\log p$ for continuous distributions, called the differential entropy\footnote{In what follows, the definitions for continuous random variables apply mutatis mutandis.}).
+\end{defn}
+
+Entropy measures the uncertainty inherent in a distribution. Indeed, the greater the entropy, the more surprisal we will experience (in terms of expectation) when sampling from it. Next we discuss what distributions extremize the entropy.
+
+\paragraph{Discrete case, minimum}
+Observe that the entropy is always nonnegative. Hence when the probability mass is concentrated at a single point, the entropy attains its minimum, $0$.
+
+\paragraph{Discrete case, maximum} We use Lagrange multipliers. Without loss of generality, suppose that $\X=\{1,2,\dots,n\}$. Let $y=(y_1,\dots,y_n)=(p(1),\dots,p(n))$. The Lagrangian
+\[\L(y,\lambda)=-\sum_{i=1}^{n}y_i\log y_i+\lambda\bra{\sum_{i=1}^{n}y_i-1}.\]
+The only stationary point is $y_1=\dots=y_n$, and the Hessian of the Lagrangian here is negative definite. Hence a uniform distribution maximizes the entropy (maximum $\log n$).
+
+\paragraph{Continuous case, minimum}
+When $X\sim U(a,b)$, $\H(p)=\log(b-a)$. Hence $\H(p)\to-\infty$ when $b-a\to0$. There is no minimum.
+
+\paragraph{Continuous case, maximum}
+Suppose that the PDF $f(x)=0$ when $x\not\in[a,b]$. Similar to the proof of the discrete case, variational calculus (the Euler-Lagrange equation) leads to that a uniform distribution maximizes the (differential) entropy. Here we give a cleaner proof using the nonnegativity of the KL divergence (see \ref{subsec: kldiv properties}).
+
+Let $u$ be the PDF of $U(a,b)$.
+\[0\le\KL{f}{u}=\int_a^b f\log f-\int_a^b f\log u=-\H(f)+\log(b-a).\]
+Hence $\H(f)\le\log(b-a)$. Equality holds if and only if $f=u$ a.e.\footnote{a.e. stands for almost everywhere.}
+
+\subsection{Cross-Entropy}
+In the context of machine learning, we often approximate an unknown, underlying true distribution $p$ with a model $q$. Suppose we again want to measure the expected surprisal when sampling from the distribution. Samples are still drawn from the black box $p$, but this time we can only measure surprisal with our known, approximating distribution $q$.
+
+\begin{defn}
+    The cross-entropy, denoted $\H(p,q)$, is the average surprisal experienced when samples are drawn from $p$, but surprisal is measured via $q$.
+    \[\H(p,q)=\E_{x\sim p}[-\log q(x)]=-\sum_{x\in\X}p(x)\log q(x).\]
+\end{defn}
+
+
+\section{Kullback-Leibler Divergence}
+\label{sec: kl}
+\subsection{Motivation and Definition}
+How much extra surprisal do we get by using our incorrect model $q$ instead of the truth $p$?
+
+\begin{defn}
+    The Kullback-Leibler (KL) divergence from $q$ to $p$, denoted $\KL pq$, is the difference between the cross-entropy and the entropy.
+    \[\KL pq=\H(p,q)-\H(p)=\sum_{x\in\X}p(x)\log\frac{p(x)}{q(x)}.\]
+\end{defn}
+
+
+\subsection{Properties}
+\label{subsec: kldiv properties}
+\begin{thm}
+    $\KL pq\ge0$. Equality holds if and only if $p=q$ a.e.
+\end{thm}
+\begin{proof}
+    We prove the discrete case using Jensen's inequality; the continuous case holds mutatis mutandis. Notice that $p(x)\ge0$ and $\sum_{x\in\X}p(x)=1$. Because $\log$ is concave, by Jensen's inequality
+    \[\KL pq=-\sum_{x\in\X}p(x)\log\frac{q(x)}{p(x)}\ge-\log\sum_{x\in\X}p(x)\frac{q(x)}{p(x)}=0.\]
+    The condition for equality follows from that of Jensen's inequality.
+\end{proof}
+
+\begin{cor}
+    $\H(p,q)\ge\H(p)=\H(p,p)$.
+\end{cor}
+
+Measuring surprisal using the true distribution yields least average surprisal. Any incorrect surprisal-measuring scheme incurs extra surprisal.
+
+The KL divergence is asymmetric: $\KL pq\ne\KL qp$ generally.
+
+
+\section{An Information-Theoretic Perspective}
+\label{sec: information}
+The KL divergence quantifies the ``inefficiency'' in using distribution $q$ to represent the truth $p$. Suppose we want to design a (binary) code (like Morse code or Huffman code) to transmit outcomes of a discrete random variable $X\sim p(x)$. To be efficient, we should assign shorter codewords to more probable outcomes and longer codewords to less probable ones.
+
+Shannon's source coding theorem implies that the theoretically optimal length of a codeword representing an outcome $x$ is $-\log p(x)$. In this subsection we use $2$ as the base of the logarithm because we are constructing a binary code.
+
+\paragraph{The optimal scenario}
+Suppose we know the true distribution $p$ and hence use it to construct the code. The expected length of a codeword is then
+\[\E_{x\sim p}[-\log p(x)]=\H(p).\]
+
+\paragraph{The suboptimal scenario}
+Now suppose we only have an approximating distribution $q$, and construct our code based on this false belief. The length of the codeword assigned to an outcome $x$ would then be $-\log q(x)$. The expected length of a codeword is therefore
+\[\E_{x\sim p}[-\log q(x)]=\H(p,q).\]
+
+We see that the entropy is the average number of bits required per message when using the most efficient code, and the cross-entropy is the average number of bits required per message when using an inefficient, suboptimal code based on the wrong distribution $q$. Therefore, the KL divergence $\KL pq=\H(p,q)-\H(p)\ge0$ is the average number of \emph{extra} bits required per message due to using the wrong distribution to optimize the code. This justifies the statement that the KL divergence quantifies the inefficiency in using distribution $q$ to represent $p$.
+
+
+\section{The Machine Learning Perspective}
+Now the answers to the questions raised in \ref{sec: intro} are clear.
+\begin{enumerate}
+    \item Why do we use the KL divergence as a measure of distance between distributions?
+    
+    The answer is clear from \ref{sec: kl} and \ref{sec: information}.
+
+    \item Why do we use the cross-entropy as the loss function in machine learning (classification problems in particular)?
+
+    To measure the dissimilarity between the data's underlying distribution $p$ and our model $q_\theta$, we use the KL divergence. Minimizing $\KL p{q_\theta}=\H(p,q_\theta)-\H(p)$ is equivalent to minimizing $\H(p,q_\theta)$ because $p$ does not depend on $\theta$.
+
+    One might further ask that the cross-entropy $\H(p,q_\theta)=-\sum_{x\in\X}p(x)\log q_\theta(x)$ looks different from the actual loss function we see in ML textbooks, and that how can we possibly calculate it without knowing the true distribution $p(x)$? The answer is we use the empirical distribution $\hat\D$, i.e., the uniform distribution over the training set $\{(x^{(i)},y^{(i)})\}_{i=1}^N$, to approximate $p$. The cross-entropy (loss)
+    \[J(\theta)=\H(\hat\D,q_\theta)=-\sum_{i=1}^{N}\frac1N\log q_\theta(x^{(i)},y^{(i)}).\]
+    This is the form familiar to us for long.
+\end{enumerate}
+
+
+\end{document}
