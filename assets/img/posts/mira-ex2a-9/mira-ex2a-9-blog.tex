@@ -1,0 +1,158 @@
+% xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{enumerate,enumitem}
+\usepackage{thmtools}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage{titling}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+
+
+% ---------- Preamble ----------
+\pagestyle{fancyplain} % Make all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\geometry{
+    textwidth=160mm,
+    top=25mm,
+    bottom=25mm,
+}
+\setlist[enumerate]{
+    label=\textnormal{(\arabic*)},
+    topsep=.5em,
+    itemsep=0em,
+}
+\setlist[itemize]{
+    topsep=.5em,
+    itemsep=0em,
+}
+
+
+% ---------- Theorem environments ----------
+\theoremstyle{plain} % default
+\newtheorem{thm}{Theorem}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{lem}{Lemma}
+\newtheorem*{conj}{Conjecture}
+\newtheorem*{quest}{Question}
+
+\theoremstyle{definition}
+\newtheorem*{defn}{Definition}
+\newtheorem*{prob}{Problem}
+
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{rmks}{Remarks}
+
+
+% ---------- Symbol Macros ----------
+\newcommand{\bra}[1]{\mathopen{}\left(#1\right)}
+\newcommand{\sbra}[1]{\mathopen{}\left[#1\right]}
+\newcommand{\cbra}[1]{\mathopen{}\left\{#1\right\}}
+\newcommand{\abra}[1]{\mathopen{}\left\langle#1\right\rangle}
+\newcommand{\norm}[1]{\mathopen{}\left\lVert#1\right\rVert}
+\newcommand{\inp}[2]{\mathopen{}\left\langle#1,#2\right\rangle}
+\newcommand{\abs}[1]{\mathopen{}\left|#1\right|}
+\newcommand{\rest}[2]{\mathopen{}\left.#1\right|_{#2}}
+
+% \newcommand{\R}{\mathbb{R}}
+% \newcommand{\N}{\mathbb{N}}
+% \newcommand{\Z}{\mathbb{Z}}
+% \newcommand{\C}{\mathbb{C}}
+% \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\Q}{\mathbf{Q}}
+
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\dx}{\mathrm{d}x}
+\newcommand{\eps}{\varepsilon}
+% \renewcommand{\epsilon}{\varepsilon}
+% \renewcommand{\phi}{\varphi}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathcal{P}}
+\renewcommand{\L}{\mathcal{L}}
+
+\newcommand{\T}{\mathrm{T}}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+
+
+\begin{document}
+\thispagestyle{empty}
+
+
+\begin{lem}
+    For any $A\subseteq\R$ and any bounded open interval $I$,
+    \[\abs A=\abs{A\cap I}+\abs{A\cap I^c}.\]
+\end{lem}
+
+\begin{proof}
+    $A=(A\cap I)\cup(A\cap I^c)\implies\text{LHS}\le\text{RHS}$. Assume that $\text{LHS}<\text{RHS}$, i.e., $\exists\{I_k\}$ s.t.
+    \[A\subseteq\bigcup_{k=1}^\infty I_k,\quad \sum_{k=1}^\infty\ell(I_k)<\abs{A\cap I}+\abs{A\cap I^c}.\]
+
+    Split each $I_k$ into one open interval inside $I$, collected in a new $\{I_k\}$, and two open intervals outside $I$, collected in $\{J_k\}$. Then
+    \begin{equation}\label{eq1}
+        A\backslash\{a,b\}\subseteq\bra{\bigcup_{k=1}^\infty I_k}\cup\bra{\bigcup_{k=1}^\infty J_k},\quad I_k\in I,J_k\in I^c.
+    \end{equation}
+    \begin{equation}\label{eq2}
+        \sum_{k=1}^\infty\ell(I_k)+\sum_{k=1}^\infty\ell(J_k)<\abs{A\cap I}+\abs{A\cap I^c}.
+    \end{equation}
+    Add $(a-\eps,a+\eps)$ and $(b-\eps,b+\eps)$ to $\{J_k\}$. (\ref{eq1}) becomes
+    \begin{equation}\label{eq3}
+        A\subseteq\bra{\bigcup_{k=1}^\infty I_k}\cup\bra{\bigcup_{k=1}^\infty J_k},
+    \end{equation}
+    and $\eps$ is small enough s.t. (\ref{eq2}) still holds.
+    
+    Analyze (\ref{eq1}) and (\ref{eq3}). We have
+    \[A\cap I\subseteq\bigcup_{k=1}^\infty I_k,\quad A\cap I^c\subseteq\bigcup_{k=1}^\infty J_k,\]
+    contradicting (\ref{eq2}).
+\end{proof}
+
+\begin{prob}
+Prove that for all $A\subseteq\R$,
+\[\abs A=\lim_{t\to\infty}\abs{A\cap(-t,t)}.\]
+\end{prob}
+
+\begin{proof}
+    The case where $\abs A=0$ is trivial.
+
+    Now suppose $\abs A\in\R^+$. Let $\{I_k\}$ be s.t.
+    \begin{equation}\label{eq4}
+        A\subseteq\bigcup_{k=1}^\infty I_k,
+    \end{equation}
+    where each $I_k$ is bounded and
+    \[\abs A\le\sum_{k=1}^\infty\ell(I_k)<\abs A+\eps.\]
+    Then $\exists n$ s.t.
+    \[\sum_{k=1}^n\ell(I_k)>\abs A-\eps.\]
+    $\exists t$ s.t. $\bigcup_{k=1}^nI_k\subseteq(-t,t)$. Now by (\ref{eq4}), we have
+    \[A\cap(-t,t)^c\subseteq\bigcup_{k=n+1}^\infty I_k.\]
+    \[\abs{A\cap(-t,t)^c}\le\sum_{k=n+1}^\infty\ell(I_k)<(\abs A+\eps)-(\abs A-\eps)=2\eps.\]
+
+    Now suppose $\abs A=\infty$. WLOG, suppose $A\cap\Z=\emptyset$; otherwise consider $A\backslash\Z$ instead of $A$. By repeatedly using the lemma, we can prove that
+    \[\abs A=\sum_{n\in\Z}\abs{A\cap(n,n+1)}.\]
+    Because $\abs A=\infty$, $\exists m$ s.t.
+    \[\sum_{n=-m}^m\abs{A\cap(n,n+1)}>C.\]
+    Hence
+    \[\abs{A\cap(-m,m)}=\sum_{n=-m}^{m-1}\abs{A\cap(n,n+1)}>C.\]
+    Here the first equality follows from repeatedly using the lemma.
+\end{proof}
+
+
+
+\end{document}
