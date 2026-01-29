@@ -142,7 +142,7 @@ The condition for equality follows from that of Jensen's inequality.
 {% capture thm_content %}
 $\mathrm{H}(p,q)\ge\mathrm{H}(p)=\mathrm{H}(p,p)$.
 {% endcapture %}
-{% include thms/corollary.html title="" content=thm_content %}
+{% include thms/theorem.html type="Corollary" title="" content=thm_content %}
 
 Measuring surprisal using the true distribution yields least average surprisal. Any incorrect surprisal-measuring scheme incurs extra surprisal.
 
