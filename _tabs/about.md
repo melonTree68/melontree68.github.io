@@ -37,8 +37,7 @@ This section serves as both a self-introduction and a way to hold myself account
   - [ ] Category Theory
 - Computer Science and Artificial Intelligence
   - [x] Data Structure
-  - [ ] Algorithms and Complexity
-  - [ ] Introduction to Theoretical Computer Science
+  - [x] Algorithms and Complexity
   - [ ] Machine Learning
   - [ ] Deep Learning
   - [ ] Reinforcement Learning
