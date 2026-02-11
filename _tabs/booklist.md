@@ -14,9 +14,11 @@ I keep a list of materials that I have found helpful in my studies. Unless other
 - *Linear Algebra Done Right*, Sheldon Axler
 - *Algorithms*, S. Dasgupta et al.
 - (Excerpt) *Mathematical Logic*, Heinz-Dieter Ebbinghaus et al.
+- (Excerpt) *Set Theory*, Thomas Jech
+- (Not Finished) *CS229: Machine Learning (Lecture Notes)*, Stanford University
 - (Not Finished) *Abstract Algebra*, Dummit & Foote
-- (Not Finished) *An Introduction to Manifolds*, Loring W. Tu
 - (Not Finished) *Measure, Integration & Real Analysis*, Sheldon Axler
+- (Not Finished) *An Introduction to Manifolds*, Loring W. Tu
 
 ## AI-Generated Notes
 
