@@ -2,6 +2,7 @@
 # the default layout is 'page'
 icon: fas fa-info-circle
 order: 4
+math: true
 ---
 > Philosophy is written in this grand book the universe, which stands continually open to our gaze. But the book cannot be understood unless one first learns to comprehend the language and to read the alphabet in which it is composed. It is written in the language of mathematics, and its characters are triangles, circles, and other geometric figures without which it is humanly impossible to understand a single word of it; without these, one wanders about in a dark labyrinth.
 >
@@ -46,6 +47,6 @@ This section serves as both a self-introduction and a way to hold myself account
 
 ## Grades
 
-Core average score: 94.58 (rank: 1/66).\\
-8 major-related courses (out of a total of 9) were completed with scores of 95+.\\
+Core average score: 95.30 (rank: 1/66).\\
+13 major-related courses (out of a total of 14) were completed with scores $\ge$ 95.\\
 Mathematical Analysis I & II (Honors) were both completed with scores of 100.
