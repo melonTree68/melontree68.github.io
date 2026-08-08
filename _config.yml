@@ -16,10 +16,10 @@ timezone: Asia/Shanghai
 
 title: Zhijie Chen's Blog # the main title
 
-tagline: A collection of my random thoughts on mathematics and artificial intelligence # it will display as the subtitle
+tagline: A collection of my random thoughts on mathematics, theoretical computer science, and artificial intelligence # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  A collection of Zhijie Chen's random thoughts on mathematics and artificial intelligence.
+  A collection of Zhijie Chen's random thoughts on mathematics, theoretical computer science, and artificial intelligence.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
