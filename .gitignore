@@ -31,3 +31,8 @@ assets/js/dist
 
 # Personal files
 todo.md
+
+# Hidden system files
+*~
+.DS_Store
+Thumbs.db
