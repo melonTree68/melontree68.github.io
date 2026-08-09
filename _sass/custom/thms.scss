@@ -1,5 +1,15 @@
 /* _sass/custom/thms.scss */
 
+:root[data-bs-theme='light'] {
+  --theorem-thm-bg: #f2f2ff;
+  --theorem-thm-border: #4145b9;
+}
+
+:root[data-bs-theme='dark'] {
+  --theorem-thm-bg: #28283b;
+  --theorem-thm-border: #282c7b;
+}
+
 .theorem-box, 
 .proof-box,
 .definition-box {

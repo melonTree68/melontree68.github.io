@@ -1,6 +1,14 @@
 ---
 ---
 
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}',
+  $font-family-base: ('Charter', 'Source Sans Pro', serif),
+  $font-family-heading: ('Charter', 'Source Sans Pro', serif),
+  $sidebar-width-large: 270px,
+  $sb-btn-gap-lg: 0.9rem
+);
+
 /* prettier-ignore */
 @use 'main
 {%- if jekyll.environment == 'production' -%}
@@ -11,3 +19,4 @@
 /* append your custom style below */
 @use 'custom/thms.scss';
 @use 'custom/fonts.scss';
+@use 'custom/sidebar.scss';

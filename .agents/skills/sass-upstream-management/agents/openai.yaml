@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sass Upstream Management"
+  short_description: "Manage local Sass files against Chirpy upstream"
+  default_prompt: "Use $sass-upstream-management to audit and minimize local `_sass` files that shadow Chirpy upstream."
