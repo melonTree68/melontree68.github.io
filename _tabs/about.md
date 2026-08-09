@@ -10,7 +10,7 @@ math: true
 
 ## Hello! I am Zhijie Chen.
 
-I am currently a junior undergraduate at the School of Artificial Intelligence, Shanghai Jiao Tong University.
+I am currently a junior undergraduate at the School of Artificial Intelligence, Shanghai Jiao Tong University. I have joined the [Machine Vision and Intelligence Group (MVIG)](https://www.mvig.org), advised by Prof. Cewu Lu (卢策吾) and [Prof. Chuan Wen (汶川)](https://alvinwen428.github.io).
 
 While my major is in artificial intelligence, I am enthusiastic about mathematics and theoretical computer science. I am particularly interested in the underlying structure of things --- the rigor of logical reasoning, the ideas behind formal proofs, and the interconnections between theories. This persistent pursuit of clarity and precision often leads me toward abstract thinking and precise formalism, which I find both challenging and rewarding.
 
