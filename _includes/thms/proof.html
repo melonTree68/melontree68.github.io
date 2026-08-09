@@ -1,8 +1,10 @@
 <!-- _includes/thms/proof.html -->
 
+{% assign pf_title = include.title | default: "Proof" %}
+
 <div class="proof-box">
   <div class="proof-title">
-    <em>Proof.</em>
+    <em>{{ pf_title }}.</em>
   </div>
   <div class="proof-content">
     {{ include.content | markdownify }}

@@ -1,10 +1,11 @@
 <!-- _includes/thms/theorem.html -->
 
 {% assign thm_type = include.type | default: "Theorem" %}
+{% assign thm_title = include.title | default: "" %}
 
 <div class="theorem-box">
   <div class="theorem-title">
-    <strong>{{ thm_type }}</strong>{% if include.title != "" %} ({{ include.title }}){% endif %}<strong>.</strong>
+    <strong>{{ thm_type }}</strong>{% if thm_title != "" %} ({{ thm_title }}){% endif %}<strong>.</strong>
   </div>
   <div class="theorem-content">
     {{ include.content | markdownify }}

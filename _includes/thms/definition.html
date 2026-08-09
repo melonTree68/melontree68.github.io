@@ -1,8 +1,11 @@
 <!-- _includes/thms/definition.html -->
 
+{% assign def_type = include.type | default: "Definition" %}
+{% assign def_title = include.title | default: "" %}
+
 <div class="definition-box">
   <div class="definition-title">
-    <strong>Definition.</strong>
+    <strong>{{ def_type }}</strong>{% if def_title != "" %} ({{ def_title }}){% endif %}<strong>.</strong>
   </div>
   <div class="definition-content">
     {{ include.content | markdownify }}
