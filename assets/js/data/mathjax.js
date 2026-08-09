@@ -58,6 +58,7 @@ MathJax = {
             E: "\\mathbb{E}",
             T: "\\mathrm{T}",
             X: "\\mathcal{X}",
+            S: "\\mathcal{S}",
 
             spn: "\\operatorname{span}",
             im: "\\operatorname{im}",

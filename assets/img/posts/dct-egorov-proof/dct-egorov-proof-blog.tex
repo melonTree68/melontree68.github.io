@@ -1,0 +1,206 @@
+% xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{enumerate,enumitem}
+\usepackage{thmtools}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+\usepackage{titling}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+
+
+% ---------- Preamble ----------
+\pagestyle{fancyplain} % Make all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\geometry{
+    textwidth=160mm,
+    top=25mm,
+    bottom=25mm,
+}
+\setlist[enumerate]{
+    label=\textnormal{(\arabic*)},
+    topsep=.5em,
+    itemsep=0em,
+}
+\setlist[itemize]{
+    topsep=.5em,
+    itemsep=0em,
+}
+
+
+% ---------- Theorem environments ----------
+\theoremstyle{plain} % default
+\newtheorem{thm}{Theorem}
+\newtheorem*{theorem}{Theorem}
+\newtheorem{lemma}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+
+
+% ---------- Symbol Macros ----------
+\newcommand{\bra}[1]{\mathopen{}\left(#1\right)}
+\newcommand{\sbra}[1]{\mathopen{}\left[#1\right]}
+\newcommand{\cbra}[1]{\mathopen{}\left\{#1\right\}}
+\newcommand{\abra}[1]{\mathopen{}\left\langle#1\right\rangle}
+\newcommand{\norm}[1]{\mathopen{}\left\lVert#1\right\rVert}
+\newcommand{\inp}[2]{\mathopen{}\left\langle#1,#2\right\rangle}
+\newcommand{\abs}[1]{\mathopen{}\left|#1\right|}
+\newcommand{\rest}[2]{\mathopen{}\left.#1\right|_{#2}}
+
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\Q}{\mathbf{Q}}
+
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\dx}{\mathrm{d}x}
+\newcommand{\eps}{\varepsilon}
+% \renewcommand{\phi}{\varphi}
+\renewcommand{\L}{\mathcal{L}}
+\renewcommand{\S}{\mathcal{S}}
+
+\newcommand{\nti}{n\to\infty}
+
+
+% ---------- Title Section ----------
+\title{A Natural Proof of the Dominated Convergence Theorem}
+\author{Zhijie Chen}
+
+\begin{document}
+\maketitle
+
+The Dominated Convergence Theorem is a grand result in the area of Lebesgue integration. It deals with the problem of interchanging limits and integrals, i.e., whether
+\[\lim_{\nti}\int f_n=\int f\]
+for $f_n\to f$. The theorem demonstrates that Lebesgue integration indeed fixes a serious deficiency of Riemann integration, at least to a reasonably satisfactory extent.
+
+\begin{theorem}[Dominated Convergence Theorem, DCT]
+    Suppose $(X,\S,\mu)$ is a measure space, $f:X\to[-\infty,\infty]$ is measurable, and $\{f_n\}_{n\in\N}$ is a sequence of measurable functions such that $f_n\to f$ a.e. If there exists a nonnegative measurable function $g\in\L^1(X,\S,\mu)$ s.t.
+    \[\abs{f_n(x)}\le g(x)\]
+    for every $n\in\N$ and almost every $x\in X$, then
+    \[\lim_{\nti}\int f_n\,\d\mu=\int f\,\d\mu.\]
+\end{theorem}
+
+The traditional proof of DCT uses Fatou's Lemma and is sketched in \ref{subsec:proof_dct_fatou}. However, the proof is clean but not natural, at least to me. This article presents an alternative proof using Egorov's Theorem, which is slightly more complicated but quite intuitive.
+
+\section{Background}
+For the rest of the article, suppose $(X,\S,\mu)$ is a measure space.
+
+\subsection{A deficiency of Riemann integration}
+One problem with Riemann integration is that it does not work well with limits. Integrals of (pointwise) limits do not necessarily equal limits of integrals; limits of Riemann integrable functions are not necessarily Riemann integrable\footnote{In contrast, the pointwise limit of measurable functions is guaranteed to be measurable.}. Below are two interesting examples.
+
+\begin{example}
+    Define $f_n:[0,1]\to\R$ for each $n\in\N$ by
+    \[f_n(x)=\lim_{m\to\infty}\abs{\cos(2n!\pi x)}^m.\]
+    Then $\int f_n=0$ for each $n$ but
+    \[f(x)=\lim_{\nti}f_n(x)=\chi_\Q\]
+    is the Dirichlet function and is not Riemann integrable.
+\end{example}
+
+\begin{example}[Example 1.16 of \emph{Measure, Integration, and Real Analysis} by Sheldon Axler]
+    Suppose $\{r_n\}_{n\in\N}$ is an enumeration of $(0,1)\cap\Q$. Define $f_n:[0,1]\to\R$ for each $n\in\N$ by
+    \[f_n(x)=\begin{cases}
+        \frac1{\sqrt{x-r_n}}\quad&\text{if }x>r_n,\\
+        0&\text{otherwise}.
+    \end{cases}\]
+    Define $f:[0,1]\to[0,\infty]$ by
+    \[f(x)=\sum_{n=0}^{\infty}\frac{f_n(x)}{2^n}.\]
+    Because $\Q$ is dense in $\R$, $f$ is unbounded on every nontrivial interval. Thus $f$ is not Riemann integrable on every nontrivial subinterval of $[0,1]$. However, we should expect the area under the graph of $f$ to be less than 4 rather than undefined, since the area under the graph of each $f_n$ is less than 2.
+\end{example}
+
+Although we have the following positive result, the theorem has two problems: it requires the hypothesis that the limit function is Riemann integrable, and mathematicians have not yet found a clean, elementary, Riemann-integration-based proof of it. In fact, this suggests that Riemann integration is not the ideal theory of integration. See Theorem~1.18 of \emph{Measure, Integration, and Real Analysis} by Sheldon Axler and section~14.2.3 of 《数学分析习题课讲义（第 2 版）（下册）》 by 谢惠民 et al.
+
+\begin{theorem}[Arzelà's Bounded Convergence Theorem]
+    Suppose $\{f_n\}_{n\in\N}$ is a sequence of Riemann integrable functions on $[a,b]$, $\{f_n\}$ is uniformly bounded, and $f_n\to f$. If $f$ is Riemann integrable, then
+    \[\lim_{\nti}\int_a^bf_n=\int_a^bf.\]
+\end{theorem}
+
+\subsection{Traditional proof of DCT by Fatou's Lemma}
+\label{subsec:proof_dct_fatou}
+We state Fatou's Lemma and sketch the proof of DCT using Fatou's Lemma below.
+
+\begin{theorem}[Fatou's Lemma]
+    Suppose $\{f_n\}_{n\in\N}$ is a sequence of nonnegative measurable functions. Then
+    \[\int\bra{\liminf_{\nti}f_n}\d\mu\le\liminf_{\nti}\int f_n\,\d\mu.\]
+\end{theorem}
+
+\begin{proof}[Proof sketch of DCT using Fatou's Lemma]
+    Notice that $g-f_n\ge0$ a.e. and $g+f_n\ge0$ a.e. By Fatou's Lemma,
+    \[\int\bra{\liminf_{\nti}(g-f_n)}\d\mu\le\liminf_{\nti}\int (g-f_n)\,\d\mu \implies \int f\,\d\mu\ge\limsup_{\nti}\int f_n\,\d\mu,\]
+    \[\int\bra{\liminf_{\nti}(g+f_n)}\d\mu\le\liminf_{\nti}\int (g+f_n)\,\d\mu \implies \int f\,\d\mu\le\liminf_{\nti}\int f_n\,\d\mu.\]
+    The proof is completed.
+\end{proof}
+
+\section{Some Preparation}
+We first state Egorov's Theorem.
+
+\begin{theorem}[Egorov's Theorem]
+    Suppose $\mu(X)<\infty$, $\{f_n\}_{n\in\N}$ is a sequence of measurable functions, and $f_n\to f$. Then $\forall\eps>0$, $\exists E\in\S$ s.t. $\mu(E^c)<\eps$ and $f_n$ converges uniformly to $f$ on $E$.
+\end{theorem}
+
+To use Egorov's Theorem to prove DCT, we still need to address two problems.
+\begin{enumerate}
+    \item $\mu(X)$ might not be finite.
+    \item We need to control the integral over the set on which $f_n$ does not converge uniformly.
+\end{enumerate}
+Lemma~\ref{lem:mass_concentrate} will solve the first problem, and Lemma~\ref{lem:small_area} will solve the second.
+
+\subsection{Integrals over small sets are small}
+\begin{lemma}\label{lem:small_area}
+    Suppose $f\in\L^1(X,\S,\mu)$ is nonnegative. Then $\forall\eps>0$, $\exists\delta>0$ s.t. for every $B\in\S$ with $\mu(B)<\delta$,
+    \[\int_Bf\,\d\mu<\eps.\]
+\end{lemma}
+
+\begin{proof}
+    Suppose $\eps>0$. The desired result is trivial for simple functions. For the general case, take a simple measurable function $h$ s.t. $0\le h\le f$ and $\int(f-h)\,\d\mu<\eps/2$. Then $\exists\delta>0$ s.t. for every $B\in\S$ with $\mu(B)<\delta$,
+    \[\int_Bh\,\d\mu<\frac\eps2.\]
+    Then
+    \[\int_Bf\,\d\mu\le\int(f-h)\,\d\mu+\int_Bh\,\d\mu<\eps\]
+    for every $B\in\S$ with $\mu(B)<\delta$, as desired.
+\end{proof}
+
+\subsection{Mass of integrable functions concentrates on sets of finite measure}
+\begin{lemma}\label{lem:mass_concentrate}
+    Suppose $f\in\L^1(X,\S,\mu)$ is nonnegative. Then $\forall\eps>0$, $\exists E\in\S$ s.t. $\mu(E)<\infty$ and
+    \[\int_{E^c}f\,\d\mu<\eps.\]
+\end{lemma}
+\begin{proof}
+    Suppose $\eps>0$. The desired result is trivial for simple functions. For the general case, take a simple measurable function $h$ s.t. $0\le h\le f$ and $\int(f-h)\,\d\mu<\eps/2$. Then $\exists E\in\S$ s.t. $\mu(E)<\infty$ and
+    \[\int_{E^c}h\,\d\mu<\frac\eps2.\]
+    Then
+    \[\int_{E^c}f\,\d\mu\le\int(f-h)\,\d\mu+\int_{E^c}h\,\d\mu<\eps,\]
+    as desired.
+\end{proof}
+
+\section{A Natural Proof of DCT by Egorov's Theorem}
+Fix $\eps>0$. By Lemma~\ref{lem:mass_concentrate}, let $X_0\in\S$ be s.t. $\mu(X_0)<\infty$ and
+\[\int_{X_0^c}g\,\d\mu<\frac\eps5.\]
+By Lemma~\ref{lem:small_area}, let $\delta>0$ be s.t for every $B\in\S$ with $\mu(B)<\delta$,
+\[\int_Bg\,\d\mu<\frac\eps5.\]
+By Egorov's Theorem, $\exists E\subseteq X_0$ s.t. $E\in\S$, $\mu(X_0\setminus E)<\delta$, and $f_n$ converges uniformly to $f$ on $E$. Then
+\begin{align*}
+    \abs{\int(f_n-f)\,\d\mu}&\le\int\abs{f_n-f}\,\d\mu \\
+    &\le\int_E\abs{f_n-f}\,\d\mu + \int_{X_0\setminus E}(\abs{f_n}+\abs f)\,\d\mu + \int_{X_0^c}(\abs{f_n}+\abs f)\,\d\mu \\
+    &\le\int_E\abs{f_n-f}\,\d\mu + 2\int_{X_0\setminus E}g\,\d\mu + 2\int_{X_0^c}g\,\d\mu \\
+    (n\ge N)\quad&\le\eps,
+\end{align*}
+where $N\in\N$ is s.t.
+\[\abs{f_n(x)-f(x)}<\frac\eps{5\mu(E)}\]
+for every $n\ge N$ and every $x\in E$. The proof is completed.\qed
+
+\end{document}
