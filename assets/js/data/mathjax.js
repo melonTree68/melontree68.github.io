@@ -44,8 +44,6 @@ MathJax = {
             CC: "\\mathbb{C}",
             FF: "\\mathbb{F}",
 
-            epsilon: "\\varepsilon",
-            phi: "\\varphi",
             dnei: "\\overset{\\circ}{U}",
             d: "\\mathrm{d}",
             dx: "\\mathrm{d}x",

@@ -62,13 +62,13 @@ An intuitive explanation is that, if you believe that a *volume* satisfies the t
 > You might think that I've mixed up necessary and sufficient conditions. You are right, at least for now. That the determinant satisfies these properties does not indicate that *any* mathematical object satisfying these properties is the determinant. Just leave the question for now. It will be rigorously resolved later.
 {: .prompt-warning }
 
-As for a rigorous proof of this proposition, one can directly use the change of variables formula in multiple integrals, taking $\phi$ to be a linear transformation.
+As for a rigorous proof of this proposition, one can directly use the change of variables formula in multiple integrals, taking $\varphi$ to be a linear transformation.
 
 $$
-\int_{\phi(E)}f(x)\dx=\int_E f(\phi(t))\abs{\det J(\phi(t))}\d t,
+\int_{\varphi(E)}f(x)\dx=\int_E f(\varphi(t))\abs{\det J(\varphi(t))}\d t,
 $$
 
-where $E\subseteq\R^n$ is a closed Jordan-measurable region, $t,x=\phi(t)\in\R^n$, and all other necessary conditions (e.g., smoothness) are satisfied.
+where $E\subseteq\R^n$ is a closed Jordan-measurable region, $t,x=\varphi(t)\in\R^n$, and all other necessary conditions (e.g., smoothness) are satisfied.
 
 ### A Key Observation
 

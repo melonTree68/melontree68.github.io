@@ -50,7 +50,7 @@ Given a function $G$ on the class of all finite sequences, there exists a unique
 {% include thms/theorem.html title="Recursion of Natural Numbers" content=thm_content %}
 
 {% capture pf_content %}
-We define $F$ by a first-order formula. We only describe it in natural language and one should be convinced that it can be converted to a nice first-order formula $\phi(n,x,G)$.
+We define $F$ by a first-order formula. We only describe it in natural language and one should be convinced that it can be converted to a nice first-order formula $\varphi(n,x,G)$.
 
 $F(n)=x\iff$ there is an $n$-sequence $\abra{a_m:m<n}$ such that:
 1. For every $m<n$, $a_m=G(\abra{a_k:k<m})$;
@@ -240,18 +240,18 @@ Suppose $\emptyset\not\in X\neq\emptyset$ is a nonempty collection of nonempty s
 
 The idea is simple and straightforward. AC is needed only when no explicit rule of selection can be given (see the first quote at the beginning of the article and the first footnote). The well-order gives us a canonical way to make the selection, so we do not need AC.
 
-We make the above notion precise by explicitly constructing a choice function. Let $\phi(x,y,p)$ be the first-order formula
+We make the above notion precise by explicitly constructing a choice function. Let $\varphi(x,y,p)$ be the first-order formula
 
 $$
-\phi(S,s,X)=(S\in X\land s\in S\land\forall x(x\in S\to s\leq x)).
+\varphi(S,s,X)=(S\in X\land s\in S\land\forall x(x\in S\to s\leq x)).
 $$
 
-We wrote $\phi(x,y,p)$ above to emphasize that $\phi$ is meant to be a function (with parameter $p$). It can be verified that $\phi$ is the function that maps each set in $X$ to the least element of it, a choice function as desired.
+We wrote $\varphi(x,y,p)$ above to emphasize that $\varphi$ is meant to be a function (with parameter $p$). It can be verified that $\varphi$ is the function that maps each set in $X$ to the least element of it, a choice function as desired.
 
-If you prefer something more formal, we can make $\phi$ a function on the universe $V$ and restrict this class function to obtain a set function (a set) *in* the set $X\times\bigcup X$.
+If you prefer something more formal, we can make $\varphi$ a function on the universe $V$ and restrict this class function to obtain a set function (a set) *in* the set $X\times\bigcup X$.
 
 $$
-\phi(S,s,X)=((S\in X\land s\in S\land\forall x(x\in S\to s\leq x))\lor(S\not\in X\land s=\emptyset)).
+\varphi(S,s,X)=((S\in X\land s\in S\land\forall x(x\in S\to s\leq x))\lor(S\not\in X\land s=\emptyset)).
 $$
 
 > We cannot give a well-order to every set in $X$ because that requires many choices (one choice of well-order for each set in $X$), which per se requires the axiom of choice. Our approach requires only one choice, namely choosing a well-order on $\bigcup X$.
@@ -260,7 +260,7 @@ $$
 > The reader might become overly suspicious and doubt if one choice (or two, or ten) is allowed without AC. It is legitimate, by mathematical logic. One might refer to Chapter IV of *Mathematical Logic* by Heinz-Dieter Ebbinghaus et al. Sequent calculus contains a sequent rule that allows one to make one choice:
 >
 > $$
-> \frac{\Gamma\quad\phi\frac yx\quad\psi}{\Gamma\quad\exists x\phi\quad\psi}\quad\text{if $y$ is not free in }\Gamma\,\exists x\phi\,\psi.
+> \frac{\Gamma\quad\varphi\frac yx\quad\psi}{\Gamma\quad\exists x\varphi\quad\psi}\quad\text{if $y$ is not free in }\Gamma\,\exists x\varphi\,\psi.
 > $$
 >
 > Or in Qinxiang Cao's notation: if $x_0$ does not freely occur in $\Phi$ or $\chi$, and $\Phi,\psi\vdash\chi$, then $\Phi,\exists x_0\psi\vdash\chi$ (from his lecture note on April 2, 2025).
@@ -292,7 +292,7 @@ That solves the problem of infinity and well-defines an injective (infinite) seq
 The $\omega$-sequence can alternatively be constructed with the well-ordering theorem. Let $X$ be well-ordered by $\leq$. Define $G:X\to X$ by the first-order formula
 
 $$
-\phi(x,y,X)=(x\leq y\land x\neq y\land\forall z((x\leq z\land x\neq z)\to y\leq z)).
+\varphi(x,y,X)=(x\leq y\land x\neq y\land\forall z((x\leq z\land x\neq z)\to y\leq z)).
 $$
 
 So $G(x)$ is the least element strictly greater than $x$, whose existence is guaranteed by the well-ordering.
@@ -356,7 +356,7 @@ For the sake of contradiction, assume such a $\mu$ does exist. We first derive s
 > 
 > (3) $\mu([a,b])=b-a$ for $a,b\in\RR\cup\\{-\infty,\infty\\}$.
 
-To prove (1), take $A_1=(0,1)$, $A_2=A_3=\cdots=\emptyset$ and apply countable additivity. For (2), take $A_1=A$, $A_2=B\backslash A$, $A_3=A_4=\cdots=\emptyset$ and apply countable additivity. For (3), apply (2) to $(a,b)\subseteq[a,b]\subseteq(a-\epsilon,b+\epsilon)$.
+To prove (1), take $A_1=(0,1)$, $A_2=A_3=\cdots=\emptyset$ and apply countable additivity. For (2), take $A_1=A$, $A_2=B\backslash A$, $A_3=A_4=\cdots=\emptyset$ and apply countable additivity. For (3), apply (2) to $(a,b)\subseteq[a,b]\subseteq(a-\varepsilon,b+\varepsilon)$.
 
 With all preparations made, we prove the theorem. Define an equivalence relation $\sim$ on $[-1,1]$ by $a\sim b$ if $a-b\in\QQ$. Let $P=\\{[a]:a\in[-1,1]\\}$ be the set of equivalence classes under $\sim$. By AC, let $f$ be a choice function on $P$ and let $V=\im f$. So $f$ assigns to each equivalence class a representative of it, and $V$ contains a unique representative of every equivalence class.
 
